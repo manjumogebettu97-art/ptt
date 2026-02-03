@@ -1,0 +1,456 @@
+/* --- 1. CORE VARIABLES & RESET --- */
+:root {
+--dark: #0a0f0d;
+--green: #1a3c28; /* Deep Forest */
+--gold: #d4af37; /* Corporate Luxury */
+--white: #f4f4f4;
+--glass: rgba(255, 255, 255, 0.05);
+--border: rgba(255, 255, 255, 0.1);
+--ease: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+cursor: none; /* Hide default cursor for custom one */
+}
+
+body {
+background-color: var(--dark);
+color: var(--white);
+font-family: 'Manrope', sans-serif;
+overflow-x: hidden;
+line-height: 1.6;
+}
+
+h1, h2, h3, .serif {
+font-family: 'Cormorant Garamond', serif;
+font-weight: 400;
+}
+
+a {
+text-decoration: none;
+color: inherit;
+transition: 0.5s;
+}
+
+ul {
+list-style: none;
+}
+
+/* --- 2. CUSTOM CURSOR --- */
+.cursor-dot, .cursor-outline {
+position: fixed;
+top: 0; left: 0;
+transform: translate(-50%, -50%);
+border-radius: 50%;
+z-index: 9999;
+pointer-events: none;
+}
+
+.cursor-dot {
+width: 8px;
+height: 8px;
+background: var(--white);
+}
+
+.cursor-outline {
+width: 40px;
+height: 40px;
+border: 1px solid rgba(255,255,255,0.5);
+transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+/* Hover State for Cursor */
+body.hovering .cursor-outline {
+width: 70px;
+height: 70px;
+background: rgba(255,255,255,0.1);
+border-color: transparent;
+backdrop-filter: blur(2px);
+}
+
+/* --- 3. PRELOADER --- */
+.preloader {
+position: fixed;
+top: 0; left: 0;
+width: 100%; height: 100vh;
+background: var(--dark);
+z-index: 10000;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.loader-text {
+font-family: 'Cormorant Garamond', serif;
+font-size: 2rem;
+letter-spacing: 5px;
+color: var(--gold);
+overflow: hidden;
+white-space: nowrap;
+animation: textReveal 1.5s var(--ease) forwards;
+}
+
+.loader-line {
+width: 0%;
+height: 1px;
+background: var(--white);
+margin-top: 20px;
+animation: lineGrow 1.5s var(--ease) 0.5s forwards;
+}
+
+@keyframes textReveal { from { opacity: 0; letter-spacing: 20px; } to { opacity: 1; letter-spacing: 5px; } }
+@keyframes lineGrow { to { width: 200px; } }
+
+/* --- 4. NAVIGATION --- */
+nav {
+position: fixed;
+top: 0;
+width: 100%;
+padding: 2rem 5%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 1000;
+mix-blend-mode: difference;
+}
+
+.logo {
+font-size: 1.2rem;
+letter-spacing: 2px;
+text-transform: uppercase;
+font-weight: 700;
+}
+
+.nav-links {
+display: flex;
+gap: 3rem;
+}
+
+.nav-links a {
+font-size: 0.9rem;
+text-transform: uppercase;
+letter-spacing: 1px;
+position: relative;
+}
+
+.nav-links a::after {
+content: '';
+position: absolute;
+bottom: -5px;
+left: 0;
+width: 0%;
+height: 1px;
+background: var(--white);
+transition: 0.5s var(--ease);
+}
+
+.nav-links a:hover::after {
+width: 100%;
+}
+
+.menu-btn {
+display: none;
+font-size: 1.5rem;
+}
+
+/* --- 5. HERO SECTION --- */
+.hero {
+height: 100vh;
+width: 100%;
+position: relative;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+
+.video-bg {
+position: absolute;
+top: 0; left: 0;
+width: 100%; height: 100%;
+object-fit: cover;
+opacity: 0.6;
+z-index: -1;
+transform: scale(1.1);
+}
+
+.hero-overlay {
+position: absolute;
+top: 0; left: 0;
+width: 100%; height: 100%;
+background: linear-gradient(to bottom, rgba(10,15,13,0.3), var(--dark));
+z-index: 0;
+}
+
+.hero-content {
+position: relative;
+z-index: 2;
+max-width: 900px;
+padding: 0 20px;
+}
+
+.hero-subtitle {
+font-size: 0.9rem;
+letter-spacing: 4px;
+text-transform: uppercase;
+margin-bottom: 2rem;
+color: rgba(255,255,255,0.7);
+display: block;
+}
+
+.hero-title {
+font-size: 5rem;
+line-height: 1;
+margin-bottom: 2rem;
+background: linear-gradient(45deg, #fff, #aaa);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+.btn-luxury {
+display: inline-block;
+padding: 1.2rem 3rem;
+border: 1px solid var(--border);
+color: var(--white);
+text-transform: uppercase;
+letter-spacing: 2px;
+font-size: 0.8rem;
+position: relative;
+overflow: hidden;
+transition: 0.5s;
+}
+
+.btn-luxury::before {
+content: '';
+position: absolute;
+top: 0; left: -100%;
+width: 100%; height: 100%;
+background: var(--white);
+transition: 0.5s var(--ease);
+z-index: -1;
+}
+
+.btn-luxury:hover {
+color: var(--dark);
+border-color: var(--white);
+}
+
+.btn-luxury:hover::before {
+left: 0;
+}
+
+/* --- 6. ANIMATION CLASSES --- */
+.reveal-up {
+opacity: 0;
+transform: translateY(100px);
+transition: 1.2s var(--ease);
+}
+
+.reveal-up.active {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* --- 7. CORPORATE INTRO --- */
+.corp-intro {
+padding: 10vh 10%;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 4rem;
+align-items: center;
+}
+
+.corp-text h2 {
+font-size: 3rem;
+margin-bottom: 2rem;
+color: var(--gold);
+}
+
+.corp-text p {
+font-size: 1.1rem;
+color: #ccc;
+margin-bottom: 2rem;
+font-weight: 200;
+}
+
+.corp-visual img {
+width: 100%;
+border-radius: 4px;
+filter: grayscale(100%);
+opacity: 0.8;
+}
+
+.stats-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 2rem;
+}
+
+.stat-box h4 {
+font-size: 2.5rem;
+color: var(--white);
+}
+
+.stat-box span {
+font-size: 0.8rem;
+text-transform: uppercase;
+letter-spacing: 1px;
+color: #888;
+}
+
+/* --- 8. THE BRANDS --- */
+.portfolio {
+padding: 5vh 5%;
+position: relative;
+}
+
+.section-header {
+text-align: center;
+margin-bottom: 5rem;
+}
+
+.section-header h2 {
+font-size: 3rem;
+}
+
+.brand-container {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+gap: 2rem;
+perspective: 1000px;
+}
+
+.brand-card {
+background: var(--glass);
+border: 1px solid var(--border);
+border-radius: 4px;
+overflow: hidden;
+position: relative;
+transition: 0.5s var(--ease);
+height: 500px;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+padding: 2rem;
+}
+
+.brand-bg {
+position: absolute;
+top: 0; left: 0;
+width: 100%; height: 100%;
+background-size: cover;
+background-position: center;
+transition: 0.8s var(--ease);
+opacity: 0.6;
+z-index: -1;
+filter: grayscale(100%);
+}
+
+.brand-card:hover {
+transform: translateY(-10px);
+border-color: var(--gold);
+}
+
+.brand-card:hover .brand-bg {
+transform: scale(1.1);
+filter: grayscale(0%);
+opacity: 0.8;
+}
+
+.brand-info {
+z-index: 2;
+transform: translateY(20px);
+transition: 0.5s var(--ease);
+}
+
+.brand-card:hover .brand-info {
+transform: translateY(0);
+}
+
+.brand-tag {
+font-size: 0.7rem;
+letter-spacing: 2px;
+color: var(--gold);
+text-transform: uppercase;
+margin-bottom: 10px;
+display: block;
+}
+
+.brand-title {
+font-size: 2rem;
+margin-bottom: 10px;
+font-family: 'Cormorant Garamond', serif;
+}
+
+.brand-desc {
+font-size: 0.9rem;
+color: #ddd;
+margin-bottom: 20px;
+opacity: 0;
+transition: 0.5s;
+}
+
+.brand-card:hover .brand-desc {
+opacity: 1;
+}
+
+.link-arrow {
+font-size: 1.5rem;
+color: var(--gold);
+}
+
+/* --- 9. B2B SECTION --- */
+.b2b-section {
+background: var(--green);
+padding: 10vh 10%;
+margin-top: 5rem;
+position: relative;
+}
+
+.b2b-content {
+border-left: 1px solid rgba(255,255,255,0.2);
+padding-left: 4rem;
+}
+
+.b2b-content p {
+max-width: 600px;
+color: #ddd;
+font-weight: 200;
+}
+
+/* --- 10. FOOTER --- */
+footer {
+padding: 5rem 5%;
+border-top: 1px solid var(--border);
+display: flex;
+justify-content: space-between;
+align-items: flex-end;
+font-size: 0.8rem;
+color: #666;
+}
+
+.footer-brand h2 {
+color: var(--white);
+font-size: 1.5rem;
+margin-bottom: 0.5rem;
+}
+
+.cin-code {
+font-family: monospace;
+color: var(--gold);
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+.hero-title { font-size: 3rem; }
+.corp-intro { grid-template-columns: 1fr; gap: 2rem; }
+.nav-links { display: none; }
+.menu-btn { display: block; }
+.cursor-dot, .cursor-outline { display: none; }
+* { cursor: auto; }
+}
