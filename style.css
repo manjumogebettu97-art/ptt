@@ -1467,7 +1467,7 @@ h3 {
     }
     .stacked-gallery {
         --stack-card-width: clamp(240px, 44vw, 340px);
-        --stack-card-height: calc(var(--stack-card-width) * 0.75);
+        --stack-card-height: var(--stack-card-width);
         --stack-shift: clamp(56px, 10vw, 110px);
         --stack-depth: clamp(48px, 8vw, 90px);
         --stack-pad: 140px;
@@ -1507,9 +1507,10 @@ h3 {
 
     .nav-right {
         position: absolute;
+        left: 0.75rem;
         right: 0.75rem;
         top: calc(100% + 8px);
-        width: min(92vw, 430px);
+        width: auto;
         border-radius: 18px;
         border: 1px solid rgba(19, 32, 25, 0.1);
         background: rgba(250, 253, 251, 0.98);
@@ -1517,7 +1518,7 @@ h3 {
         padding: 1rem;
         display: none;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         gap: 0.86rem;
     }
 
@@ -1528,8 +1529,21 @@ h3 {
     .nav-links {
         width: 100%;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         gap: 0.45rem;
+    }
+
+    .nav-links a,
+    .nav-cta {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .logo {
+        white-space: normal;
+        max-width: 60%;
+        line-height: 1.2;
     }
 
     .hero-gallery {
@@ -1567,7 +1581,7 @@ h3 {
 
     .stacked-gallery {
         --stack-card-width: clamp(220px, 68vw, 310px);
-        --stack-card-height: calc(var(--stack-card-width) * 0.75);
+        --stack-card-height: var(--stack-card-width);
         --stack-shift: clamp(52px, 14vw, 100px);
         --stack-depth: clamp(42px, 10vw, 80px);
         --stack-tilt: 5.5deg;
@@ -1621,11 +1635,31 @@ h3 {
 
     .stacked-gallery {
         --stack-card-width: clamp(210px, 82vw, 280px);
-        --stack-card-height: calc(var(--stack-card-width) * 0.75);
+        --stack-card-height: var(--stack-card-width);
         --stack-shift: clamp(44px, 18vw, 80px);
         --stack-depth: clamp(36px, 12vw, 70px);
         --stack-tilt: 5deg;
         --stack-pad: 110px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-actions .button-primary,
+    .hero-actions .scroll-indicator {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .contact-form {
+        padding: 1rem;
+    }
+
+    .pillar-card,
+    .sustainability-showcase {
+        padding: 1rem;
     }
 
     .showcase-photo {
