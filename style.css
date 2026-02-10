@@ -1611,6 +1611,16 @@ h3 {
         padding-top: 4.8rem;
     }
 
+    .section .container {
+        text-align: center;
+    }
+
+    .section-subtext,
+    .hero-copy p,
+    .narrative-copy {
+        margin-inline: auto;
+    }
+
     .hero-gallery {
         min-height: 330px;
     }
@@ -1672,5 +1682,34 @@ h3 {
 
     .footer-bottom {
         align-items: flex-start;
+    }
+
+    .hero-actions,
+    .footer-bottom,
+    .footer-badges,
+    .showcase-chips {
+        justify-content: center;
+    }
+
+    .about-highlight,
+    .pillar-card,
+    .sustainability-showcase,
+    .service-card,
+    .highlight-card,
+    .resort-tile,
+    .layer-card,
+    .contact-form {
+        width: 100%;
+    }
+
+    .contact-form,
+    .contact-meta,
+    .footer-column,
+    .footer-legal {
+        text-align: left;
+    }
+
+    .contact-form label {
+        text-align: left;
     }
 }
