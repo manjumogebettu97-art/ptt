@@ -1,341 +1,394 @@
-const menuToggle = document.querySelector('.menu-toggle');
-const navRight = document.querySelector('.nav-right');
+(() => {
+    const doc = document;
+    const win = window;
+    const prefersReducedMotion = win.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function closeMenu() {
-    if (!menuToggle || !navRight) {
-        return;
+    function initMobileNav() {
+        const toggle = doc.querySelector(".menu-toggle");
+        const nav = doc.querySelector(".nav-right");
+        if (!toggle || !nav) return;
+
+        function closeNav() {
+            nav.classList.remove("open");
+            toggle.setAttribute("aria-expanded", "false");
+        }
+
+        toggle.addEventListener("click", () => {
+            const isOpen = nav.classList.toggle("open");
+            toggle.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        nav.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                if (win.innerWidth <= 900) closeNav();
+            });
+        });
+
+        doc.addEventListener("click", (event) => {
+            if (!nav.classList.contains("open")) return;
+            if (nav.contains(event.target) || toggle.contains(event.target)) return;
+            closeNav();
+        });
+
+        doc.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") closeNav();
+        });
+
+        win.addEventListener("resize", () => {
+            if (win.innerWidth > 900) closeNav();
+        });
     }
-    navRight.classList.remove('open');
-    menuToggle.setAttribute('aria-expanded', 'false');
-}
 
-if (menuToggle && navRight) {
-    menuToggle.addEventListener('click', () => {
-        const isOpen = navRight.classList.toggle('open');
-        menuToggle.setAttribute('aria-expanded', String(isOpen));
-    });
+    function initReveals() {
+        const revealNodes = [...doc.querySelectorAll(".reveal")];
+        if (!revealNodes.length) return;
 
-    document.addEventListener('click', (event) => {
-        const clickedInsideMenu = navRight.contains(event.target) || menuToggle.contains(event.target);
-        if (!clickedInsideMenu) {
-            closeMenu();
-        }
-    });
-
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-            closeMenu();
-        }
-    });
-
-    navRight.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', closeMenu);
-    });
-}
-
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const revealElements = document.querySelectorAll('.reveal');
-
-revealElements.forEach((element, index) => {
-    const delay = Math.min(index * 40, 280);
-    element.style.setProperty('--reveal-delay', `${delay}ms`);
-});
-
-function revealNow(element) {
-    element.classList.add('is-visible');
-}
-
-if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries, currentObserver) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                revealNow(entry.target);
-                currentObserver.unobserve(entry.target);
-            }
+        revealNodes.forEach((node, index) => {
+            node.style.setProperty("--reveal-delay", `${Math.min(index * 60, 320)}ms`);
         });
-    }, { threshold: 0.16 });
 
-    revealElements.forEach((element) => revealObserver.observe(element));
-} else {
-    revealElements.forEach(revealNow);
-}
-
-const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
-const sectionElements = navLinks
-    .map((link) => link.getAttribute('href'))
-    .filter((href) => href && href.length > 1)
-    .map((id) => document.querySelector(id))
-    .filter(Boolean);
-
-if (sectionElements.length > 0 && 'IntersectionObserver' in window) {
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (!entry.isIntersecting) {
-                return;
-            }
-
-            navLinks.forEach((link) => {
-                const isActive = link.getAttribute('href') === `#${entry.target.id}`;
-                link.classList.toggle('active', isActive);
-            });
-        });
-    }, {
-        rootMargin: '-26% 0px -55% 0px',
-        threshold: 0
-    });
-
-    sectionElements.forEach((section) => sectionObserver.observe(section));
-}
-
-if (window.gsap && window.ScrollTrigger && !prefersReducedMotion) {
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.fromTo('.hero-gallery',
-        { y: 24, rotate: -1 },
-        {
-            y: -24,
-            rotate: 1,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '.hero',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: true
-            }
+        if (prefersReducedMotion || !("IntersectionObserver" in win)) {
+            revealNodes.forEach((node) => node.classList.add("is-visible"));
+            return;
         }
-    );
 
-    gsap.fromTo('.hero-copy',
-        { y: 16, opacity: 0.94 },
-        {
-            y: -12,
-            opacity: 1,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '.hero',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: true
-            }
-        }
-    );
-
-    gsap.from('.navbar', {
-        y: -20,
-        opacity: 0,
-        duration: 0.65,
-        ease: 'power2.out'
-    });
-}
-
-const tiltCards = document.querySelectorAll('[data-tilt]');
-
-if (tiltCards.length > 0 && !prefersReducedMotion) {
-    tiltCards.forEach((card) => {
-        let rafId = null;
-
-        const updateTilt = (event) => {
-            const rect = card.getBoundingClientRect();
-            const positionX = (event.clientX - rect.left) / rect.width;
-            const positionY = (event.clientY - rect.top) / rect.height;
-            const tiltX = (0.5 - positionY) * 10;
-            const tiltY = (positionX - 0.5) * 12;
-
-            card.style.setProperty('--tilt-x', `${tiltX.toFixed(2)}deg`);
-            card.style.setProperty('--tilt-y', `${tiltY.toFixed(2)}deg`);
-        };
-
-        const handleMove = (event) => {
-            if (rafId) {
-                return;
-            }
-            rafId = window.requestAnimationFrame(() => {
-                updateTilt(event);
-                rafId = null;
-            });
-        };
-
-        const resetTilt = () => {
-            card.style.setProperty('--tilt-x', '0deg');
-            card.style.setProperty('--tilt-y', '0deg');
-        };
-
-        card.addEventListener('pointermove', handleMove);
-        card.addEventListener('pointerleave', resetTilt);
-        card.addEventListener('pointercancel', resetTilt);
-    });
-}
-
-const carousel = document.querySelector('[data-carousel]');
-const carouselTrack = document.querySelector('[data-carousel-track]');
-
-if (carousel && carouselTrack) {
-    const carouselCards = Array.from(carouselTrack.querySelectorAll('[data-carousel-card]'));
-
-    if (carouselCards.length > 0) {
-        const cardCount = carouselCards.length;
-        const half = Math.floor(cardCount / 2);
-        let activeIndex = 0;
-        let positions = new Array(cardCount).fill(0);
-        let isDragging = false;
-        let isPaused = false;
-        let lastX = 0;
-        let dragDelta = 0;
-        let autoTimer = null;
-        let autoResumeTimeout = null;
-        const dragStep = 42;
-        const autoInterval = 2400;
-        const autoResumeDelay = 1400;
-
-        const computePosition = (index, active) => {
-            let pos = index - active;
-            if (pos > half) {
-                pos -= cardCount;
-            }
-            if (pos < -half) {
-                pos += cardCount;
-            }
-            return pos;
-        };
-
-        const applyPositions = (prevPositions = []) => {
-            const jumpIndices = new Set();
-            carouselCards.forEach((card, index) => {
-                const pos = positions[index];
-                if (prevPositions[index] !== undefined && Math.abs(pos - prevPositions[index]) > 1) {
-                    jumpIndices.add(index);
-                }
-                if (jumpIndices.has(index)) {
-                    card.classList.add('is-jumping');
-                } else {
-                    card.classList.remove('is-jumping');
-                }
-                card.style.setProperty('--pos', pos);
-                card.style.setProperty('--pos-abs', Math.abs(pos));
-            });
-
-            if (jumpIndices.size > 0) {
-                requestAnimationFrame(() => {
-                    jumpIndices.forEach((index) => carouselCards[index].classList.remove('is-jumping'));
+        const observer = new IntersectionObserver(
+            (entries, obs) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add("is-visible");
+                    obs.unobserve(entry.target);
                 });
+            },
+            { threshold: 0.2, rootMargin: "0px 0px -8% 0px" }
+        );
+
+        revealNodes.forEach((node) => observer.observe(node));
+    }
+
+    function initActiveNav() {
+        const links = [...doc.querySelectorAll(".nav-links a[href^='#']")];
+        const sections = links
+            .map((link) => doc.querySelector(link.getAttribute("href")))
+            .filter(Boolean);
+
+        if (!links.length || !sections.length || !("IntersectionObserver" in win)) return;
+
+        const byId = new Map(
+            links.map((link) => [link.getAttribute("href")?.slice(1), link])
+        );
+
+        const sectionObserver = new IntersectionObserver(
+            (entries) => {
+                const visible = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+                if (!visible.length) return;
+                const activeId = visible[0].target.id;
+                links.forEach((link) => link.classList.remove("active"));
+                const activeLink = byId.get(activeId);
+                if (activeLink) activeLink.classList.add("active");
+            },
+            { threshold: [0.2, 0.45, 0.7], rootMargin: "-15% 0px -60% 0px" }
+        );
+
+        sections.forEach((section) => sectionObserver.observe(section));
+    }
+
+    function initTiltCards() {
+        const tiltCards = [...doc.querySelectorAll("[data-tilt]")];
+        if (!tiltCards.length || prefersReducedMotion) return;
+
+        tiltCards.forEach((card) => {
+            let rafId = null;
+
+            function setTilt(clientX, clientY) {
+                const rect = card.getBoundingClientRect();
+                const x = (clientX - rect.left) / rect.width;
+                const y = (clientY - rect.top) / rect.height;
+                const tiltY = (x - 0.5) * 10;
+                const tiltX = (0.5 - y) * 8;
+                card.style.setProperty("--tilt-x", `${tiltX.toFixed(2)}deg`);
+                card.style.setProperty("--tilt-y", `${tiltY.toFixed(2)}deg`);
             }
-        };
 
-        const updatePositions = () => {
-            const previous = positions.slice();
-            positions = positions.map((_, index) => computePosition(index, activeIndex));
-            applyPositions(previous);
-        };
-
-        const step = (direction = 1) => {
-            activeIndex = (activeIndex + direction + cardCount) % cardCount;
-            updatePositions();
-        };
-
-        const stopAuto = () => {
-            if (autoTimer) {
-                clearInterval(autoTimer);
-                autoTimer = null;
+            function onMove(event) {
+                if (rafId) win.cancelAnimationFrame(rafId);
+                rafId = win.requestAnimationFrame(() => setTilt(event.clientX, event.clientY));
             }
-        };
 
-        const startAuto = () => {
-            if (prefersReducedMotion) {
-                return;
+            function resetTilt() {
+                card.style.setProperty("--tilt-x", "0deg");
+                card.style.setProperty("--tilt-y", "0deg");
             }
-            stopAuto();
-            autoTimer = setInterval(() => {
-                if (!isPaused && !isDragging && !document.hidden) {
-                    step(1);
+
+            card.addEventListener("pointermove", onMove);
+            card.addEventListener("pointerleave", resetTilt);
+            card.addEventListener("blur", resetTilt, true);
+        });
+    }
+
+    function initHeroShowcase() {
+        const hero = doc.querySelector("#hero");
+        const stage = hero?.querySelector("[data-hero-stage]");
+        if (!hero || !stage) return;
+
+        function setProgress(value) {
+            stage.style.setProperty("--hero-progress", String(value));
+        }
+
+        if (prefersReducedMotion) {
+            setProgress(0);
+            return;
+        }
+
+        if (win.gsap && win.ScrollTrigger) {
+            win.gsap.registerPlugin(win.ScrollTrigger);
+            win.gsap.fromTo(
+                stage,
+                { "--hero-progress": 0 },
+                {
+                    "--hero-progress": 1,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: hero,
+                        start: "top top",
+                        end: "bottom top",
+                        scrub: 0.8
+                    }
                 }
-            }, autoInterval);
-        };
+            );
+            return;
+        }
 
-        const pauseAuto = () => {
-            isPaused = true;
-            if (autoResumeTimeout) {
-                clearTimeout(autoResumeTimeout);
-                autoResumeTimeout = null;
+        let rafId = null;
+        function update() {
+            rafId = null;
+            const rect = hero.getBoundingClientRect();
+            const travel = Math.max(1, hero.offsetHeight + win.innerHeight * 0.25);
+            const raw = (win.innerHeight - rect.top) / travel;
+            const progress = Math.max(0, Math.min(1, raw));
+            setProgress(progress.toFixed(4));
+        }
+
+        function requestUpdate() {
+            if (rafId !== null) return;
+            rafId = win.requestAnimationFrame(update);
+        }
+
+        requestUpdate();
+        win.addEventListener("scroll", requestUpdate, { passive: true });
+        win.addEventListener("resize", requestUpdate);
+    }
+
+    function initStackCarousel() {
+        const gallery = doc.querySelector("[data-carousel]");
+        const track = gallery?.querySelector("[data-carousel-track]");
+        const cards = track ? [...track.querySelectorAll("[data-carousel-card]")] : [];
+        if (!gallery || !track || cards.length < 2) return;
+
+        let index = 0;
+        let autoplayId = null;
+        let animationId = null;
+        let isAnimating = false;
+        let pointerId = null;
+        let startX = 0;
+        let startY = 0;
+        let deltaX = 0;
+
+        const swipeThreshold = 50;
+        const autoplayDelay = 4200;
+        const animationDuration = prefersReducedMotion ? 0 : 720;
+        const maxVisibleSlots = 3;
+
+        function wrap(value) {
+            const len = cards.length;
+            return ((value % len) + len) % len;
+        }
+
+        function circularDelta(cardIndex, activeIndex) {
+            const len = cards.length;
+            let delta = cardIndex - activeIndex;
+            if (delta > len / 2) delta -= len;
+            if (delta < -len / 2) delta += len;
+            return delta;
+        }
+
+        function updatePositions() {
+            cards.forEach((card, cardIndex) => {
+                const delta = circularDelta(cardIndex, index);
+                const abs = Math.abs(delta);
+                const boundedAbs = Math.min(abs, maxVisibleSlots + 1);
+                const hidden = abs > maxVisibleSlots;
+
+                card.style.setProperty("--slot", String(delta));
+                card.style.setProperty("--slot-abs", String(boundedAbs));
+                card.style.setProperty("--z", String(100 - boundedAbs));
+                card.style.setProperty("--card-opacity", hidden ? "0" : String(1 - boundedAbs * 0.16));
+
+                card.classList.toggle("is-active", delta === 0);
+                card.setAttribute("aria-hidden", String(delta !== 0));
+                card.tabIndex = delta === 0 ? 0 : -1;
+                card.style.pointerEvents = abs <= 1 ? "auto" : "none";
+            });
+        }
+
+        function endAnimationAfterDelay() {
+            if (animationId) {
+                win.clearTimeout(animationId);
+                animationId = null;
             }
-        };
-
-        const resumeAuto = (delay = 0) => {
-            if (autoResumeTimeout) {
-                clearTimeout(autoResumeTimeout);
-            }
-            autoResumeTimeout = window.setTimeout(() => {
-                isPaused = false;
-            }, delay);
-        };
-
-        const handlePointerDown = (event) => {
-            if (event.button !== 0 && event.pointerType !== 'touch') {
+            if (animationDuration === 0) {
+                isAnimating = false;
                 return;
             }
-            isDragging = true;
-            dragDelta = 0;
-            carousel.classList.add('is-dragging');
-            pauseAuto();
-            lastX = event.clientX;
-            carousel.setPointerCapture?.(event.pointerId);
-        };
+            animationId = win.setTimeout(() => {
+                isAnimating = false;
+            }, animationDuration);
+        }
 
-        const handlePointerMove = (event) => {
-            if (!isDragging) {
-                return;
-            }
-            const deltaX = event.clientX - lastX;
-            dragDelta += deltaX;
-            lastX = event.clientX;
+        function goTo(nextIndex, options = {}) {
+            const { restart = true } = options;
+            const target = wrap(nextIndex);
+            if (target === index || isAnimating) return;
 
-            if (Math.abs(dragDelta) >= dragStep) {
-                const direction = dragDelta > 0 ? -1 : 1;
-                step(direction);
-                dragDelta = 0;
-            }
-        };
+            index = target;
+            isAnimating = true;
+            updatePositions();
+            endAnimationAfterDelay();
+            if (restart) restartAutoplay();
+        }
 
-        const handlePointerUp = (event) => {
-            if (!isDragging) {
-                return;
+        function next(options) {
+            goTo(index + 1, options);
+        }
+
+        function previous(options) {
+            goTo(index - 1, options);
+        }
+
+        function stopAutoplay() {
+            if (!autoplayId) return;
+            win.clearInterval(autoplayId);
+            autoplayId = null;
+        }
+
+        function startAutoplay() {
+            if (prefersReducedMotion) return;
+            stopAutoplay();
+            autoplayId = win.setInterval(() => {
+                if (!isAnimating && pointerId === null) next({ restart: false });
+            }, autoplayDelay);
+        }
+
+        function restartAutoplay() {
+            stopAutoplay();
+            startAutoplay();
+        }
+
+        function onPointerDown(event) {
+            if (event.pointerType === "mouse" && event.button !== 0) return;
+            pointerId = event.pointerId;
+            startX = event.clientX;
+            startY = event.clientY;
+            deltaX = 0;
+            gallery.classList.add("is-dragging");
+            stopAutoplay();
+            if (gallery.setPointerCapture) gallery.setPointerCapture(pointerId);
+        }
+
+        function onPointerMove(event) {
+            if (event.pointerId !== pointerId) return;
+            deltaX = event.clientX - startX;
+            const deltaY = event.clientY - startY;
+            if (Math.abs(deltaY) > Math.abs(deltaX)) return;
+            const eased = Math.max(-38, Math.min(38, deltaX * 0.18));
+            gallery.style.setProperty("--drag-offset", `${eased}px`);
+        }
+
+        function onPointerEnd(event) {
+            if (event.pointerId !== pointerId) return;
+            gallery.classList.remove("is-dragging");
+            gallery.style.setProperty("--drag-offset", "0px");
+
+            const dx = event.clientX - startX;
+            const dy = event.clientY - startY;
+
+            if (Math.abs(dx) > swipeThreshold && Math.abs(dx) > Math.abs(dy)) {
+                if (dx < 0) next({ restart: false });
+                if (dx > 0) previous({ restart: false });
             }
-            isDragging = false;
-            carousel.classList.remove('is-dragging');
-            carousel.releasePointerCapture?.(event.pointerId);
-            resumeAuto(autoResumeDelay);
-        };
+
+            if (gallery.releasePointerCapture && pointerId !== null) {
+                try {
+                    gallery.releasePointerCapture(pointerId);
+                } catch (_) {
+                    // Ignore invalid pointer capture releases.
+                }
+            }
+            pointerId = null;
+            startAutoplay();
+        }
+
+        cards.forEach((card, cardIndex) => {
+            card.addEventListener("click", () => {
+                const delta = circularDelta(cardIndex, index);
+                if (delta === 0) return;
+                goTo(index + (delta > 0 ? 1 : -1));
+            });
+        });
+
+        gallery.addEventListener("pointerdown", onPointerDown);
+        gallery.addEventListener("pointermove", onPointerMove);
+        gallery.addEventListener("pointerup", onPointerEnd);
+        gallery.addEventListener("pointercancel", onPointerEnd);
+        gallery.addEventListener("mouseenter", stopAutoplay);
+        gallery.addEventListener("mouseleave", startAutoplay);
+        gallery.addEventListener("focusin", stopAutoplay);
+        gallery.addEventListener("focusout", (event) => {
+            if (gallery.contains(event.relatedTarget)) return;
+            startAutoplay();
+        });
+        gallery.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowRight") {
+                event.preventDefault();
+                next();
+                restartAutoplay();
+            }
+            if (event.key === "ArrowLeft") {
+                event.preventDefault();
+                previous();
+                restartAutoplay();
+            }
+        });
+
+        doc.addEventListener("visibilitychange", () => {
+            if (doc.hidden) stopAutoplay();
+            else startAutoplay();
+        });
+
+        win.addEventListener("resize", () => {
+            gallery.style.setProperty("--drag-offset", "0px");
+            updatePositions();
+        });
 
         updatePositions();
-        startAuto();
-
-        carousel.addEventListener('pointerdown', handlePointerDown);
-        carousel.addEventListener('pointermove', handlePointerMove);
-        carousel.addEventListener('pointerup', handlePointerUp);
-        carousel.addEventListener('pointerleave', handlePointerUp);
-        carousel.addEventListener('pointercancel', handlePointerUp);
-
-        carousel.addEventListener('wheel', (event) => {
-            const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-            if (delta > 0) {
-                step(1);
-            } else if (delta < 0) {
-                step(-1);
-            }
-            pauseAuto();
-            resumeAuto(autoResumeDelay);
-        }, { passive: true });
-
-        carousel.addEventListener('mouseenter', pauseAuto);
-        carousel.addEventListener('mouseleave', () => resumeAuto(800));
-        carousel.addEventListener('focusin', pauseAuto);
-        carousel.addEventListener('focusout', () => resumeAuto(autoResumeDelay));
-
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                pauseAuto();
-            } else {
-                resumeAuto(0);
-            }
-        });
+        startAutoplay();
     }
-}
+
+    function init() {
+        initMobileNav();
+        initReveals();
+        initActiveNav();
+        initHeroShowcase();
+        initTiltCards();
+        initStackCarousel();
+    }
+
+    if (doc.readyState === "loading") {
+        doc.addEventListener("DOMContentLoaded", init, { once: true });
+    } else {
+        init();
+    }
+})();
