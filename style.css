@@ -1643,6 +1643,27 @@ h3 {
         left: 11%;
     }
 
+    .highlight-content,
+    .tile-overlay,
+    .service-card,
+    .layer-body,
+    .pillar-card,
+    .sustainability-showcase,
+    .showcase-content,
+    .contact-meta,
+    .footer-column,
+    .footer-legal,
+    .footer-copy,
+    .footer-tagline,
+    .footer-address {
+        text-align: center;
+    }
+
+    .tile-name-card {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
     .stacked-gallery {
         --stack-card-width: clamp(210px, 82vw, 280px);
         --stack-card-height: var(--stack-card-width);
@@ -1681,13 +1702,14 @@ h3 {
     }
 
     .footer-bottom {
-        align-items: flex-start;
+        align-items: center;
     }
 
     .hero-actions,
     .footer-bottom,
     .footer-badges,
-    .showcase-chips {
+    .showcase-chips,
+    .layer-tags {
         justify-content: center;
     }
 
@@ -1702,10 +1724,7 @@ h3 {
         width: 100%;
     }
 
-    .contact-form,
-    .contact-meta,
-    .footer-column,
-    .footer-legal {
+    .contact-form {
         text-align: left;
     }
 
