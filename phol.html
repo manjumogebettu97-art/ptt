@@ -1,436 +1,3917 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prithvi Resorts And Holiday Pvt Ltd | Creating Memorable Holiday Experiences Across India</title>
-    <meta name="description" content="Prithvi Resorts And Holiday Pvt Ltd curates premium, sustainable holiday experiences across India.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Sora:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resorts and Holiday Pvt Ltd</title>
+  <meta name="description" content="Curated travel experiences across India with premium stays, local stories, and easy planning.">
+  <style>
+    :root {
+      --bg: #eceef1;
+      --surface: #f7f8fa;
+      --surface-2: #ffffff;
+      --ink: #15161a;
+      --muted: #5a616f;
+      --line: #d8dce4;
+      --brand: #1f4e79;
+      --brand-soft: #dbe8f6;
+      --accent: #2684ff;
+      --accent-green: #1f9f53;
+      --max-width: 1240px;
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --shadow: 0 16px 34px rgba(17, 24, 39, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 18% -4%, #f4f9ff 0%, transparent 34%),
+        radial-gradient(circle at 82% -16%, #e9efff 0%, transparent 37%),
+        var(--bg);
+      color: var(--ink);
+      font-family: "SF Pro Text", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+      font-family: "SF Pro Display", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 12px;
+      top: -44px;
+      z-index: 100;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .skip-link:focus {
+      top: 10px;
+    }
+
+    .site-shell {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      background: var(--surface);
+      border-left: 0;
+      border-right: 0;
+      box-shadow: none;
+      overflow: hidden;
+      min-height: 100vh;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(10px);
+      background: rgba(247, 248, 250, 0.88);
+      border-bottom: 1px solid rgba(214, 220, 230, 0.9);
+    }
+
+    .topbar {
+      padding: 12px clamp(14px, 2.1vw, 28px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      font-size: clamp(15px, 1.7vw, 19px);
+      color: #1d3550;
+      white-space: nowrap;
+    }
+
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      min-width: 48px;
+      min-height: 44px;
+      padding: 0;
+      border-radius: 14px;
+      border: 1px solid #cfd8e5;
+      background: #fff;
+      color: #23364e;
+      font-family: inherit;
+      cursor: pointer;
+      line-height: 0;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .menu-icon {
+      position: relative;
+      width: 16px;
+      height: 12px;
+      display: inline-block;
+    }
+
+    .menu-icon::before,
+    .menu-icon::after,
+    .menu-icon span {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      border-radius: 999px;
+      background: #23364e;
+      transition: top 0.24s ease, transform 0.24s ease, opacity 0.24s ease;
+    }
+
+    .menu-icon::before {
+      top: 0;
+    }
+
+    .menu-icon span {
+      top: 5px;
+    }
+
+    .menu-icon::after {
+      top: 10px;
+    }
+
+    .site-header.nav-open .menu-icon::before {
+      top: 5px;
+      transform: rotate(45deg);
+    }
+
+    .site-header.nav-open .menu-icon span {
+      opacity: 0;
+    }
+
+    .site-header.nav-open .menu-icon::after {
+      top: 5px;
+      transform: rotate(-45deg);
+    }
+
+    .site-header.nav-open .menu-toggle {
+      background: #f4f8ff;
+      border-color: #b8c8df;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+      padding-bottom: 2px;
+    }
+
+    .main-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .main-nav a {
+      font-size: 12px;
+      color: #4b5566;
+      font-weight: 600;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+    }
+
+    .main-nav a:hover {
+      border-color: #cfdae7;
+      background: #fff;
+      color: #1d2c42;
+    }
+
+    .content {
+      background: var(--surface);
+    }
+
+    .section {
+      padding: clamp(20px, 3.2vw, 42px) clamp(14px, 2.1vw, 28px);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section:last-of-type {
+      border-bottom: 0;
+    }
+
+    .eyebrow {
+      color: #5e6878;
+      font-size: clamp(12px, 1.5vw, 15px);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .headline {
+      font-size: clamp(48px, 8vw, 130px);
+      line-height: 0.92;
+      margin-top: clamp(6px, 1vw, 10px);
+      letter-spacing: -0.045em;
+      background: linear-gradient(96deg, #1b8cff 4%, #6d67ef 42%, #d34fc0 72%, #f06f22 98%);
+      background-size: 168% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: headlineShift 7s ease-in-out infinite;
+    }
+
+    .subcopy {
+      margin-top: 14px;
+      color: #495467;
+      font-size: clamp(14px, 1.8vw, 20px);
+      max-width: 720px;
+      line-height: 1.4;
+    }
+
+    .hero {
+      background: #d8e5f1;
+      padding-top: clamp(22px, 4.2vw, 56px);
+      padding-bottom: clamp(14px, 2.8vw, 26px);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -28% -24% -18% -24%;
+      transform-origin: 50% 80%;
+      transform: rotate(-1deg) scale(1);
+      background:
+        radial-gradient(circle at 50% 82%, rgba(255, 191, 106, 0.36) 0%, rgba(255, 144, 66, 0.22) 20%, rgba(255, 95, 46, 0.1) 34%, rgba(216, 229, 241, 0) 66%),
+        repeating-conic-gradient(from -2deg at 50% 82%, rgba(255, 178, 99, 0.3) 0deg 7deg, rgba(255, 145, 67, 0.08) 7deg 14deg, rgba(216, 229, 241, 0.02) 14deg 20deg),
+        repeating-conic-gradient(from 16deg at 50% 82%, rgba(255, 126, 70, 0.2) 0deg 8deg, rgba(216, 229, 241, 0) 8deg 16deg);
+      opacity: 0.8;
+      filter: saturate(1.12) brightness(1.02);
+      pointer-events: none;
+      z-index: 0;
+      will-change: transform, opacity, filter;
+      animation: blastSweep 8.6s cubic-bezier(0.45, 0.05, 0.2, 0.95) infinite, burstFlicker 2.4s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 82%, rgba(255, 230, 196, 0.28) 0%, rgba(255, 193, 140, 0.08) 38%, rgba(216, 229, 241, 0) 78%),
+        linear-gradient(180deg, rgba(216, 229, 241, 0.24) 0%, rgba(235, 217, 196, 0.08) 38%, rgba(216, 229, 241, 0.18) 100%);
+      pointer-events: none;
+      z-index: 0;
+      animation: heroGlow 5.8s ease-in-out infinite;
+    }
+
+    .hero-copy {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy .headline {
+      margin-inline: auto;
+      max-width: 1100px;
+    }
+
+    .hero-actions {
+      display: none;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      min-height: 40px;
+      padding: 0 16px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+    }
+
+    .btn.primary {
+      background: #1e5fa8;
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(21, 55, 92, 0.25);
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: #243b58;
+      border-color: #c6d4e4;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .media-frame {
+      width: 100%;
+      background-image: var(--bg-image);
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-color: #d6dde9;
+      border-radius: var(--radius-md);
+    }
+
+    .hero-art {
+      margin-top: clamp(18px, 2.7vw, 34px);
+      aspect-ratio: 16 / 8;
+      max-width: 1280px;
+      margin-inline: auto;
+      border-radius: 0;
+      background-size: clamp(86%, 92vw, 102%);
+      background-position: center center;
+      background-color: transparent;
+      animation: heroFloat 4.8s ease-in-out infinite;
+    }
+
+    .hero-tagline {
+      margin-top: clamp(16px, 2vw, 24px);
+      margin-bottom: 0;
+      font-size: clamp(34px, 5.2vw, 76px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #1676de;
+    }
+
+    .hero-tagline span {
+      background: linear-gradient(90deg, #6d67ef 8%, #d34fc0 56%, #f06f22 96%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .stats {
+      background: #f2f4f8;
+      border-top: 1px solid #d9dee6;
+      border-bottom: 1px solid #d9dee6;
+      padding: 14px clamp(14px, 2vw, 26px);
+      display: grid;
+      grid-template-columns: 92px repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      align-items: center;
+    }
+
+    .badge {
+      border: 2px solid #111318;
+      border-radius: 14px;
+      min-height: 78px;
+      display: grid;
+      place-content: center;
+      background: #fff;
+      text-align: center;
+      line-height: 1;
+      font-weight: 700;
+      font-size: 24px;
+    }
+
+    .badge small {
+      display: block;
+      margin-top: 6px;
+      font-size: 11px;
+      color: #495160;
+      font-weight: 600;
+    }
+
+    .metric {
+      display: grid;
+      gap: 2px;
+      align-content: center;
+    }
+
+    .metric-kicker {
+      color: #677084;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .metric-value {
+      font-size: clamp(34px, 5vw, 62px);
+      letter-spacing: -0.05em;
+      line-height: 0.95;
+      color: #254c70;
+      font-weight: 700;
+    }
+
+    .metric-value.green {
+      color: var(--accent-green);
+    }
+
+    .metric-copy {
+      color: #596173;
+      font-size: 11px;
+      line-height: 1.25;
+      max-width: 220px;
+    }
+
+    .visual-strip {
+      padding: 0;
+      background: #e7eaef;
+    }
+
+    .strip-art {
+      aspect-ratio: 16 / 5;
+      border-radius: 0;
+    }
+
+    .focus {
+      background: #f6f8fb;
+      text-align: center;
+    }
+
+    .focus h2 {
+      font-size: clamp(44px, 7vw, 88px);
+      line-height: 0.95;
+      margin-top: 4px;
+    }
+
+    .focus h2 span {
+      background: linear-gradient(90deg, #1b8cff, #7a56f8 52%, #f25d12);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .focus p {
+      margin: 14px auto 0;
+      max-width: 780px;
+      color: #515a6b;
+      font-size: clamp(13px, 1.8vw, 18px);
+      line-height: 1.45;
+    }
+
+    .split-promo {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: clamp(12px, 2.2vw, 20px);
+      align-items: center;
+      background: #f7f8fa;
+    }
+
+    .split-promo h3 {
+      font-size: clamp(34px, 5.1vw, 74px);
+      line-height: 0.94;
+      margin-top: 8px;
+      max-width: 720px;
+    }
+
+    .inline-link {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .promo-art {
+      aspect-ratio: 16 / 10;
+      min-height: 160px;
+    }
+
+    .confidence-title {
+      padding-bottom: 12px;
+      background: #f7f8fa;
+    }
+
+    .confidence-title h2 {
+      font-size: clamp(38px, 6vw, 84px);
+      line-height: 0.95;
+      max-width: 760px;
+    }
+
+    .trust-grid {
+      padding-top: 0;
+      background: #f7f8fa;
+    }
+
+    .trust-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .trust-card {
+      background: #f1f4f8;
+      border: 1px solid #e1e5ec;
+      border-radius: 14px;
+      min-height: 122px;
+      padding: 16px 14px;
+      text-align: center;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 8px;
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .trust-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 22px rgba(33, 45, 60, 0.11);
+    }
+
+    .trust-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #2cb35f;
+      display: inline-grid;
+      place-items: center;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .trust-card:nth-child(2) .trust-icon {
+      background: #7d5ef9;
+    }
+
+    .trust-card:nth-child(3) .trust-icon {
+      background: #f2b20b;
+    }
+
+    .trust-card p {
+      font-size: clamp(11px, 1.4vw, 14px);
+      line-height: 1.25;
+      color: #2d3340;
+      max-width: 250px;
+    }
+
+    .pill {
+      border: 1px solid #16181d;
+      border-radius: 999px;
+      padding: 3px 12px;
+      font-size: 10px;
+      font-weight: 700;
+      background: #fff;
+    }
+
+    .feature-banner {
+      background: #f7f8fa;
+      padding-top: 2px;
+    }
+
+    .feature-card {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      min-height: clamp(260px, 34vw, 490px);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-media {
+      position: absolute;
+      inset: 0;
+      transform: scale(1.04);
+      transition: transform 0.8s ease;
+    }
+
+    .feature-card:hover .feature-media {
+      transform: scale(1.1);
+    }
+
+    .feature-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(20deg, rgba(4, 7, 14, 0.84) 5%, rgba(10, 18, 31, 0.36) 53%, rgba(11, 18, 28, 0.14) 100%);
+      z-index: 1;
+    }
+
+    .feature-content {
+      position: absolute;
+      left: clamp(14px, 2.1vw, 24px);
+      right: clamp(14px, 2.1vw, 24px);
+      bottom: clamp(14px, 2.1vw, 24px);
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-end;
+      color: #fff;
+      z-index: 2;
+    }
+
+    .feature-content h3 {
+      font-size: clamp(34px, 5vw, 74px);
+      line-height: 0.92;
+    }
+
+    .feature-content p {
+      margin-top: 6px;
+      font-size: clamp(12px, 1.4vw, 16px);
+      color: rgba(237, 241, 249, 0.9);
+      max-width: 420px;
+      line-height: 1.35;
+    }
+
+    .feature-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .feature-actions .btn {
+      min-height: 34px;
+      font-size: 11px;
+      padding: 0 13px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #151922;
+    }
+
+    .product-grid {
+      background: #f7f8fa;
+      padding-top: 10px;
+    }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .product-card {
+      background: #fff;
+      border: 1px solid #e1e5ed;
+      border-radius: 12px;
+      padding: 10px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(22, 34, 52, 0.12);
+    }
+
+    .product-media {
+      aspect-ratio: 4 / 3;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background-size: contain;
+      background-color: #eef1f7;
+    }
+
+    .product-tag {
+      color: #f06f23;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .product-card h4 {
+      margin-top: 2px;
+      font-size: clamp(14px, 1.8vw, 20px);
+      line-height: 1.2;
+    }
+
+    .product-card p {
+      margin-top: 6px;
+      color: #5a6374;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .big-question {
+      background: #f7f8fa;
+      padding-bottom: 12px;
+    }
+
+    .big-question h2 {
+      font-size: clamp(40px, 5.8vw, 88px);
+      line-height: 0.94;
+      max-width: 860px;
+    }
+
+    .drop-grid {
+      background: #f7f8fa;
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 10px;
+      align-items: stretch;
+      padding-top: 0;
+    }
+
+    .drop-main {
+      min-height: clamp(300px, 40vw, 620px);
+      border-radius: 16px;
+      padding: clamp(16px, 2.2vw, 22px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      background-color: #dfe5ef;
+    }
+
+    .drop-main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(245, 248, 252, 0.84) 0%, rgba(17, 24, 38, 0.34) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .drop-main > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .drop-kicker {
+      color: #16324d;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .drop-title {
+      font-size: clamp(56px, 8vw, 120px);
+      line-height: 0.85;
+      color: #151920;
+      max-width: 420px;
+    }
+
+    .drop-main p {
+      color: #f6f8fd;
+      font-size: clamp(13px, 1.7vw, 20px);
+      max-width: 620px;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .drop-side {
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #dde2eb;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .drop-side-media {
+      aspect-ratio: 4 / 3;
+      border-radius: 0;
+    }
+
+    .drop-side-body {
+      padding: 14px 12px;
+    }
+
+    .drop-side-body h3 {
+      font-size: clamp(24px, 3vw, 36px);
+      line-height: 0.98;
+    }
+
+    .drop-side-body p {
+      margin-top: 8px;
+      color: #4f5969;
+      font-size: clamp(13px, 1.6vw, 16px);
+      line-height: 1.4;
+    }
+
+    .discover {
+      background: #f7f8fa;
+    }
+
+    .discover h2 {
+      font-size: clamp(40px, 5.8vw, 84px);
+      line-height: 0.95;
+      max-width: 880px;
+    }
+
+    .discover-row {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .discover-card {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e0e5ed;
+      background: #fff;
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+      min-width: 0;
+    }
+
+    .discover-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(24, 35, 52, 0.12);
+    }
+
+    .discover-media {
+      aspect-ratio: 16 / 10;
+      border-radius: 0;
+    }
+
+    .discover-body {
+      padding: 11px;
+    }
+
+    .discover-body p {
+      color: #2a2f3a;
+      font-size: clamp(12px, 1.6vw, 16px);
+      line-height: 1.32;
+      min-height: 44px;
+    }
+
+    .discover-body a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #256cd8;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .faq-wrap {
+      background: #f7f8fa;
+      display: grid;
+      grid-template-columns: 1fr 1.65fr;
+      gap: clamp(14px, 2.2vw, 30px);
+    }
+
+    .faq-wrap h2 {
+      font-size: clamp(34px, 4.7vw, 72px);
+      line-height: 0.95;
+      max-width: 390px;
+    }
+
+    .faq-list {
+      border-top: 1px solid #d8dde6;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #d8dde6;
+    }
+
+    .faq-question {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 15px 0;
+      text-align: left;
+      color: #20242d;
+      font-size: clamp(15px, 1.7vw, 20px);
+      line-height: 1.35;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .faq-symbol {
+      display: inline-grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      color: #606a79;
+      font-size: 18px;
+      font-weight: 700;
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      color: #4f5766;
+      font-size: clamp(13px, 1.6vw, 16px);
+      line-height: 1.45;
+      transition: max-height 0.3s ease, padding-bottom 0.3s ease;
+      padding-bottom: 0;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 180px;
+      padding-bottom: 14px;
+    }
+
+    .faq-item.open .faq-symbol {
+      transform: rotate(45deg);
+    }
+
+    .footer {
+      background: #f1f4f8;
+      padding: clamp(18px, 2.7vw, 28px) clamp(14px, 2.1vw, 28px) clamp(20px, 3vw, 32px);
+      border-top: 1px solid #d7dde8;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand {
+      font-size: clamp(24px, 3.6vw, 36px);
+      color: #1d4d78;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .footer-cta {
+      border: 1px solid #2f68d8;
+      color: #2f68d8;
+      background: #f7fbff;
+      border-radius: 8px;
+      min-height: 38px;
+      padding: 0 12px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .footer-col h3 {
+      font-size: 13px;
+      margin-bottom: 8px;
+      color: #1d2230;
+    }
+
+    .footer-col a,
+    .footer-col p {
+      display: block;
+      color: #515a6a;
+      font-size: 12px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .footer-meta {
+      border-top: 1px solid #d7dde8;
+      padding-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      color: #616b7b;
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+      will-change: opacity, transform;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes heroFloat {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-12px) scale(1.018);
+      }
+
+      100% {
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes headlineShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes heroGlow {
+      0% {
+        opacity: 0.72;
+        transform: scale(1);
+      }
+
+      35% {
+        opacity: 0.98;
+        transform: scale(1.09);
+      }
+
+      62% {
+        opacity: 0.84;
+        transform: scale(1.03);
+      }
+
+      100% {
+        opacity: 0.72;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes blastSweep {
+      0% {
+        transform: rotate(-2.6deg) scale(0.98);
+        opacity: 0.62;
+      }
+
+      22% {
+        transform: rotate(0.6deg) scale(1.04);
+        opacity: 0.82;
+      }
+
+      48% {
+        transform: rotate(2.9deg) scale(1.12);
+        opacity: 0.92;
+      }
+
+      70% {
+        transform: rotate(0.9deg) scale(1.06);
+        opacity: 0.78;
+      }
+
+      100% {
+        transform: rotate(-2.6deg) scale(0.98);
+        opacity: 0.62;
+      }
+    }
+
+    @keyframes burstFlicker {
+      0% {
+        filter: saturate(1.08) brightness(1);
+      }
+
+      25% {
+        filter: saturate(1.24) brightness(1.07);
+      }
+
+      50% {
+        filter: saturate(1.12) brightness(0.99);
+      }
+
+      75% {
+        filter: saturate(1.28) brightness(1.1);
+      }
+
+      100% {
+        filter: saturate(1.08) brightness(1);
+      }
+    }
+
+    @media (min-width: 901px) {
+      .site-header {
+        background: rgba(246, 249, 253, 0.34);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.52);
+        -webkit-backdrop-filter: blur(24px) saturate(145%);
+        backdrop-filter: blur(24px) saturate(145%);
+        box-shadow: 0 10px 28px rgba(10, 16, 28, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.62);
+        overflow: hidden;
+        padding: 0;
+      }
+
+      .site-header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.08) 44%, rgba(255, 255, 255, 0.16) 100%);
+      }
+
+      .site-header::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        z-index: 0;
+        pointer-events: none;
+        background: rgba(255, 255, 255, 0.56);
+      }
+
+      .topbar {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        min-height: 90px;
+        padding: 18px clamp(24px, 3.2vw, 56px);
+        border-radius: 0;
+        border: 0;
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: none;
+      }
+
+      .topbar::before {
+        content: none;
+      }
+
+      .topbar > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .brand {
+        color: #1d2a3d;
+        text-shadow: none;
+        font-size: clamp(28px, 2.4vw, 38px);
+      }
+
+      .main-nav {
+        gap: 14px;
+        padding-bottom: 0;
+      }
+
+      .main-nav a {
+        font-size: clamp(16px, 1.12vw, 21px);
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        line-height: 1.1;
+        padding: 12px 18px;
+        color: #2b3a52;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.22);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+      }
+
+      .main-nav a:hover {
+        color: #1c2b43;
+        border-color: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.42);
+        box-shadow: 0 8px 18px rgba(23, 36, 58, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.66);
+      }
+
+      .hero {
+        padding-top: clamp(14px, 2.4vw, 28px);
+        padding-bottom: clamp(8px, 1.6vw, 18px);
+      }
+
+      .hero-art {
+        margin-top: clamp(8px, 1.4vw, 16px);
+        aspect-ratio: 16 / 6.2;
+        background-size: clamp(110%, 118vw, 132%);
+        background-position: center 48%;
+      }
+
+      .hero-tagline {
+        margin-top: clamp(4px, 0.8vw, 10px);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .topbar {
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .main-nav {
+        display: none;
+        width: 100%;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding-top: 10px;
+        border-top: 1px solid #d8dfe9;
+      }
+
+      .site-header.nav-open .main-nav {
+        display: flex;
+      }
+
+      .main-nav a {
+        border-radius: 10px;
+        padding: 10px 12px;
+      }
+
+      .site-header.nav-open {
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        border-bottom: 0;
+        background: rgba(22, 31, 44, 0.32);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(10px, 3vw, 20px);
+      }
+
+      .site-header.nav-open .topbar {
+        width: min(78vw, 430px);
+        min-height: min(66vh, 560px);
+        background: linear-gradient(180deg, rgba(244, 247, 252, 0.88) 0%, rgba(233, 239, 248, 0.78) 100%);
+        border: 1px solid rgba(172, 189, 212, 0.86);
+        border-radius: 24px;
+        box-shadow: 0 24px 60px rgba(10, 16, 28, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.56);
+        backdrop-filter: blur(18px) saturate(135%);
+        align-items: center;
+        justify-content: flex-start;
+        align-content: flex-start;
+        gap: 0;
+        padding: clamp(14px, 3vw, 22px) clamp(14px, 4vw, 24px) clamp(18px, 4vw, 28px);
+      }
+
+      .site-header.nav-open .brand {
+        font-size: clamp(22px, 6vw, 34px);
+      }
+
+      .site-header.nav-open .menu-toggle {
+        margin-left: auto;
+        min-width: clamp(62px, 16vw, 88px);
+        min-height: clamp(62px, 16vw, 88px);
+        border-radius: 24px;
+        border-color: #a8bdd9;
+        background: rgba(239, 244, 251, 0.7);
+      }
+
+      .site-header.nav-open .menu-icon {
+        width: clamp(22px, 4.6vw, 26px);
+        height: clamp(18px, 3.7vw, 22px);
+      }
+
+      .site-header.nav-open .menu-icon::before,
+      .site-header.nav-open .menu-icon::after {
+        top: 10px;
+      }
+
+      .site-header.nav-open .menu-icon span {
+        top: 10px;
+        opacity: 0;
+      }
+
+      .site-header.nav-open .main-nav {
+        display: flex;
+        width: 100%;
+        margin-top: clamp(10px, 2.3vw, 16px);
+        padding-top: clamp(12px, 2.4vw, 18px);
+        border-top: 1px solid #c6d3e4;
+        gap: clamp(2px, 0.8vh, 7px);
+        align-items: center;
+      }
+
+      .site-header.nav-open .main-nav a {
+        border-radius: 10px;
+        border: 0;
+        width: fit-content;
+        min-width: 170px;
+        max-width: 260px;
+        padding: 6px 8px 12px;
+        text-align: center;
+        font-size: clamp(18px, 5.2vw, 30px);
+        color: #4a5669;
+        font-weight: 600;
+        line-height: 1.14;
+        position: relative;
+        background: transparent;
+      }
+
+      .site-header.nav-open .main-nav a::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 4px;
+        width: clamp(96px, 36vw, 150px);
+        height: 2px;
+        border-radius: 999px;
+        transform: translateX(-50%);
+        background: linear-gradient(90deg, rgba(95, 126, 163, 0), rgba(95, 126, 163, 0.42) 22%, rgba(124, 99, 214, 0.52) 50%, rgba(95, 126, 163, 0.42) 78%, rgba(95, 126, 163, 0));
+        box-shadow: 0 0 10px rgba(122, 133, 174, 0.2);
+      }
+
+      .stats {
+        grid-template-columns: 78px repeat(3, minmax(0, 1fr));
+      }
+
+      .split-promo,
+      .faq-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .faq-wrap h2 {
+        max-width: none;
+      }
+
+      .product-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .drop-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .feature-actions {
+        margin-top: 8px;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .menu-toggle {
+        min-width: 56px;
+        min-height: 52px;
+        padding: 0;
+        border-radius: 18px;
+      }
+
+      .menu-icon {
+        width: 18px;
+        height: 14px;
+      }
+
+      .menu-icon span {
+        top: 6px;
+      }
+
+      .menu-icon::after {
+        top: 12px;
+      }
+
+      .site-header.nav-open .menu-icon::before,
+      .site-header.nav-open .menu-icon::after {
+        top: 6px;
+      }
+
+      .hero {
+        padding-top: 18px;
+        padding-bottom: 12px;
+      }
+
+      .hero::before {
+        inset: -24% -38% -16% -38%;
+        opacity: 0.86;
+        animation-duration: 7.8s, 2.1s;
+      }
+
+      .hero-copy .headline {
+        font-size: clamp(44px, 12vw, 64px);
+      }
+
+      .hero-art {
+        aspect-ratio: 16 / 9;
+        background-size: 128%;
+      }
+
+      .hero-tagline {
+        font-size: clamp(28px, 8.3vw, 44px);
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding-block: 14px;
+      }
+
+      .badge {
+        min-height: 66px;
+      }
+
+      .metric {
+        grid-template-columns: clamp(112px, 34vw, 180px) minmax(0, 1fr);
+        gap: 8px 12px;
+        align-items: center;
+      }
+
+      .metric-kicker {
+        grid-column: 1 / -1;
+      }
+
+      .metric-value {
+        font-size: clamp(36px, 10vw, 54px);
+        white-space: nowrap;
+      }
+
+      .metric-copy {
+        align-self: center;
+        justify-self: start;
+        font-size: 12px;
+      }
+
+      .trust-list,
+      .discover-row {
+        grid-template-columns: 1fr;
+      }
+
+      .discover-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        overflow: visible;
+        padding-bottom: 4px;
+      }
+
+      .discover-card {
+        scroll-snap-align: none;
+      }
+
+      .product-list {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Pearl white + light gold design refresh */
+    :root {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-2: #ffffff;
+      --ink: #2b241a;
+      --muted: #6a5f4f;
+      --line: #ece6da;
+      --brand: #c7a865;
+      --brand-strong: #a98947;
+      --brand-soft: #f3e8ca;
+      --accent: #b8934e;
+      --accent-green: #b8934e;
+      --radiant-gold-pink: linear-gradient(104deg, #6b390f 0%, #ad6914 12%, #e2a92f 24%, #efc65f 34%, #dfab4b 44%, #e6a0be 57%, #de83b0 70%, #c95f97 84%, #7a365f 100%);
+      --radiant-gold-pink-glossy:
+        linear-gradient(112deg, rgba(255, 255, 255, 0) 28%, rgba(255, 255, 255, 0.42) 39%, rgba(255, 255, 255, 0.08) 49%, rgba(255, 255, 255, 0) 58%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.12) 22%, rgba(255, 255, 255, 0) 52%),
+        var(--radiant-gold-pink);
+      --shadow: 0 14px 34px rgba(92, 72, 39, 0.08);
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 10% -6%, rgba(255, 224, 163, 0.12) 0%, transparent 38%),
+        radial-gradient(circle at 90% 6%, rgba(246, 170, 203, 0.08) 0%, transparent 42%),
+        linear-gradient(180deg, #ffffff 0%, #ffffff 56%, #fffdf9 100%);
+      color: var(--ink);
+    }
+
+    .site-shell,
+    .content {
+      background: transparent;
+    }
+
+    .section,
+    .footer {
+      border-color: rgba(231, 221, 203, 0.9);
+    }
+
+    .section {
+      padding: clamp(28px, 3.7vw, 54px) clamp(16px, 2.4vw, 32px);
+    }
+
+    .hero-copy,
+    .stats,
+    .strip-art,
+    .split-promo,
+    .trust-list,
+    .feature-card,
+    .product-list,
+    .drop-grid,
+    .discover-row,
+    .career-wrap,
+    .faq-wrap,
+    .footer-top,
+    .footer-grid,
+    .footer-meta {
+      width: min(100%, var(--max-width));
+      margin-inline: auto;
+    }
+
+    .focus > *,
+    .confidence-title > *,
+    .big-question > *,
+    .discover > h2 {
+      width: min(100%, var(--max-width));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid rgba(236, 230, 218, 0.95);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 22px rgba(92, 72, 39, 0.05);
+    }
+
+    .topbar {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 12px clamp(16px, 2.4vw, 28px);
+    }
+
+    .brand {
+      color: #4f4128;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      white-space: normal;
+      line-height: 1.05;
+      max-width: min(46vw, 360px);
+      font-size: clamp(12px, 1vw, 14px);
+    }
+
+    .menu-toggle {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.98);
+      color: #463b2a;
+    }
+
+    .menu-icon::before,
+    .menu-icon::after,
+    .menu-icon span {
+      background: #5b4c32;
+    }
+
+    .main-nav {
+      gap: 8px;
+    }
+
+    .main-nav a {
+      color: #625645;
+      border: 1px solid rgba(236, 230, 218, 0.82);
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+    }
+
+    .main-nav a:hover {
+      background: rgba(255, 244, 224, 0.56);
+      border-color: rgba(199, 168, 101, 0.38);
+      color: #3e3424;
+    }
+
+    .headline {
+      font-size: clamp(42px, 6.7vw, 96px);
+      line-height: 0.94;
+      letter-spacing: -0.035em;
+    }
+
+    .hero {
+      background: linear-gradient(180deg, #ffffff 0%, #ffffff 60%, #fffefe 100%);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+    }
+
+    .hero::before {
+      background:
+        radial-gradient(circle at 50% 82%, rgba(255, 209, 131, 0.2) 0%, rgba(255, 189, 124, 0.1) 20%, rgba(243, 121, 149, 0.04) 36%, rgba(255, 255, 255, 0) 68%),
+        repeating-conic-gradient(from -2deg at 50% 82%, rgba(255, 202, 120, 0.12) 0deg 7deg, rgba(247, 153, 172, 0.035) 7deg 14deg, rgba(255, 255, 255, 0.025) 14deg 20deg),
+        repeating-conic-gradient(from 16deg at 50% 82%, rgba(227, 115, 159, 0.06) 0deg 8deg, rgba(255, 255, 255, 0) 8deg 16deg);
+      opacity: 0.34;
+      filter: saturate(0.8) brightness(1.12);
+    }
+
+    .hero::after {
+      background:
+        radial-gradient(circle at 50% 82%, rgba(255, 244, 227, 0.18) 0%, rgba(255, 224, 192, 0.06) 38%, rgba(255, 255, 255, 0) 78%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.64) 0%, rgba(255, 244, 246, 0.22) 40%, rgba(255, 255, 255, 0.5) 100%);
+      opacity: 0.96;
+    }
+
+    .hero-art {
+      border-radius: 0;
+      border: 0;
+      box-shadow: none;
+      background-size: clamp(86%, 92vw, 102%);
+      background-position: center center;
+      background-color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: clamp(26px, 4.2vw, 54px);
+      color: #6b5937;
+    }
+
+    .hero-tagline span {
+      color: var(--brand);
+    }
+
+    .eyebrow {
+      color: #90713b;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .subcopy,
+    .focus p,
+    .metric-copy,
+    .drop-side-body p,
+    .faq-answer,
+    .footer-col a,
+    .footer-col p,
+    .footer-meta {
+      color: var(--muted);
+    }
+
+    .content p {
+      line-height: 1.5;
+    }
+
+    .focus,
+    .confidence-title,
+    .trust-grid,
+    .feature-banner,
+    .product-grid,
+    .big-question,
+    .discover,
+    .faq-wrap {
+      background: transparent;
+    }
+
+    .focus h2,
+    .confidence-title h2,
+    .big-question h2,
+    .discover h2,
+    .faq-wrap h2 {
+      color: #2f271d;
+      letter-spacing: -0.03em;
+    }
+
+    .focus h2 span {
+      background: none;
+      color: var(--brand);
+    }
+
+    .stats {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(236, 230, 218, 0.95);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      margin-top: clamp(10px, 1.4vw, 16px);
+    }
+
+    .badge {
+      border-color: #d6c097;
+      background: #ffffff;
+      color: #4a3c25;
+    }
+
+    .badge small,
+    .metric-kicker {
+      color: var(--muted);
+    }
+
+    .metric-value,
+    .metric-value.green {
+      color: var(--brand-strong);
+    }
+
+    .visual-strip {
+      background: transparent;
+    }
+
+    .strip-art {
+      border-radius: 22px;
+      border: 1px solid rgba(236, 230, 218, 0.95);
+      box-shadow: var(--shadow);
+    }
+
+    .split-promo {
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(236, 230, 218, 0.95);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .promo-art {
+      border-radius: 16px;
+      border: 1px solid rgba(236, 230, 218, 0.9);
+    }
+
+    .inline-link,
+    .discover-body a {
+      color: var(--brand-strong);
+      font-weight: 700;
+    }
+
+    .trust-list {
+      gap: 14px;
+    }
+
+    .trust-card,
+    .product-card,
+    .discover-card,
+    .drop-side {
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid rgba(236, 230, 218, 0.95);
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(92, 72, 39, 0.05);
+    }
+
+    .trust-card:hover,
+    .product-card:hover,
+    .discover-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(92, 72, 39, 0.08);
+    }
+
+    .trust-icon {
+      background: var(--brand);
+      color: #3d2f18;
+    }
+
+    .trust-card:nth-child(2) .trust-icon,
+    .trust-card:nth-child(3) .trust-icon {
+      background: var(--brand-soft);
+      color: #5a4622;
+    }
+
+    .trust-card p {
+      color: #3b3226;
+    }
+
+    .pill {
+      border-color: rgba(199, 168, 101, 0.45);
+      background: rgba(243, 232, 202, 0.55);
+      color: #6c562d;
+    }
+
+    .feature-card {
+      border-radius: 22px;
+      border: 1px solid rgba(236, 230, 218, 0.88);
+      box-shadow: 0 18px 38px rgba(92, 72, 39, 0.12);
+    }
+
+    .feature-overlay {
+      background: linear-gradient(18deg, rgba(42, 31, 16, 0.7) 6%, rgba(58, 43, 24, 0.34) 54%, rgba(63, 47, 27, 0.18) 100%);
+    }
+
+    .feature-actions .btn {
+      border: 1px solid rgba(236, 230, 218, 0.9);
+      background: rgba(255, 255, 255, 0.96);
+      color: #2f271d;
+    }
+
+    .btn.primary {
+      background: linear-gradient(180deg, #cfb06e 0%, #bc9a54 100%);
+      color: #271f13;
+      box-shadow: 0 10px 22px rgba(145, 112, 51, 0.22);
+    }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.98);
+      border-color: rgba(236, 230, 218, 0.95);
+      color: #4c402c;
+    }
+
+    .product-list,
+    .discover-row {
+      gap: 14px;
+    }
+
+    .product-card {
+      border-radius: 16px;
+      padding: 12px;
+    }
+
+    .product-media,
+    .discover-media,
+    .drop-side-media {
+      border-radius: 12px;
+      border: 1px solid rgba(236, 230, 218, 0.88);
+      background-color: #ffffff;
+    }
+
+    .product-tag {
+      color: var(--brand-strong);
+      letter-spacing: 0.02em;
+    }
+
+    .drop-grid {
+      gap: 14px;
+    }
+
+    .drop-main {
+      border-radius: 18px;
+      border: 1px solid rgba(236, 230, 218, 0.88);
+      box-shadow: var(--shadow);
+      background-color: #ffffff;
+    }
+
+    .drop-main::before {
+      background: linear-gradient(180deg, rgba(255, 253, 248, 0.76) 0%, rgba(66, 49, 28, 0.42) 100%);
+    }
+
+    .drop-kicker {
+      color: #7e6333;
+    }
+
+    .drop-title {
+      color: #2e261b;
+    }
+
+    .drop-main p {
+      color: rgba(255, 253, 248, 0.96);
+    }
+
+    .discover-card {
+      border-radius: 16px;
+    }
+
+    .discover-body {
+      padding: 14px 12px 13px;
+    }
+
+    .discover-body p {
+      color: #3a3126;
+    }
+
+    .faq-wrap {
+      gap: clamp(18px, 2.4vw, 32px);
+    }
+
+    .faq-list {
+      border-top: 0;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(236, 230, 218, 0.95);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 2px 16px;
+    }
+
+    .faq-item {
+      border-bottom-color: rgba(231, 221, 203, 0.95);
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-question {
+      color: #2f271d;
+      font-weight: 600;
+    }
+
+    .faq-symbol {
+      color: #8f7441;
+    }
+
+    .footer {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.98) 100%);
+      padding-top: clamp(22px, 3vw, 34px);
+    }
+
+    .footer-top {
+      margin-bottom: 18px;
+      align-items: center;
+    }
+
+    .footer-top-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .footer-brand {
+      color: #4d3f27;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-cta {
+      border-color: rgba(199, 168, 101, 0.55);
+      color: #5e4c2b;
+      background: rgba(255, 244, 224, 0.62);
+      border-radius: 10px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    .footer-col h3 {
+      color: #362d21;
+    }
+
+    .footer-col a {
+      color: #6b5f4e;
+    }
+
+    .footer-col a:hover,
+    .footer-links a:hover {
+      color: #4d3e25;
+    }
+
+    .footer-meta {
+      border-top-color: rgba(231, 221, 203, 0.9);
+    }
+
+    .footer-links a {
+      color: #6f6250;
+    }
+
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(236, 230, 218, 0.95);
+      background: rgba(255, 255, 255, 0.98);
+      color: #5e4c2b;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .social-link.linkedin {
+      width: auto;
+      padding: 0 12px;
+      gap: 6px;
+    }
+
+    .social-link .social-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(255, 244, 224, 0.85);
+      color: #6f4d16;
+      font-size: 10px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .social-link.linkedin .social-label {
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .career {
+      background: transparent;
+    }
+
+    .career-wrap {
+      display: grid;
+      gap: 18px;
+    }
+
+    .career-head {
+      display: grid;
+      gap: 10px;
+      max-width: 820px;
+    }
+
+    .career-head h2 {
+      color: #2f271d;
+      font-size: clamp(30px, 4.1vw, 52px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+
+    .career-copy {
+      color: var(--muted);
+      font-size: clamp(14px, 1.18vw, 16px);
+      line-height: 1.55;
+      max-width: 68ch;
+    }
+
+    .career-toolbar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .career-scroll-note {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.35;
+      color: #6e614f;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .career-scroll-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: fit-content;
+      margin-inline: auto;
+    }
+
+    .career-scroll-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      border: 1px solid rgba(236, 230, 218, 0.95);
+      background: rgba(255, 255, 255, 0.96);
+      color: #604b24;
+      font: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 0;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+      cursor: pointer;
+    }
+
+    .career-carousel {
+      position: relative;
+    }
+
+    .career-list {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      padding: 2px 2px 10px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(199, 168, 101, 0.32) transparent;
+    }
+
+    .career-list::-webkit-scrollbar {
+      height: 9px;
+    }
+
+    .career-list::-webkit-scrollbar-track {
+      background: rgba(236, 230, 218, 0.4);
+      border-radius: 999px;
+    }
+
+    .career-list::-webkit-scrollbar-thumb {
+      background: rgba(199, 168, 101, 0.45);
+      border-radius: 999px;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .career-card {
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(236, 230, 218, 0.95);
+      border-radius: 16px;
+      padding: 13px;
+      box-shadow: 0 8px 20px rgba(92, 72, 39, 0.05);
+      display: grid;
+      gap: 9px;
+      align-content: start;
+      min-height: 236px;
+      flex: 0 0 clamp(280px, 31vw, 360px);
+      scroll-snap-align: start;
+    }
+
+    .career-card h3 {
+      margin: 0;
+      font-size: clamp(18px, 1.8vw, 22px);
+      line-height: 1.12;
+      color: #2f271d;
+      letter-spacing: -0.02em;
+    }
+
+    .career-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .career-meta li {
+      font-size: 12px;
+      font-weight: 600;
+      color: #6b5f4e;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(255, 244, 224, 0.6);
+      border: 1px solid rgba(236, 230, 218, 0.9);
+      line-height: 1;
+    }
+
+    .career-card p {
+      margin: 0;
+      color: #564b3d;
+      font-size: 14px;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+      overflow: hidden;
+    }
+
+    .career-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    .career-apply {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(199, 168, 101, 0.45);
+      background:
+        linear-gradient(180deg, rgba(255, 247, 228, 0.98) 0%, rgba(255, 237, 205, 0.95) 100%);
+      color: #6a4f1f;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88);
+      cursor: pointer;
+    }
+
+    .career-note {
+      font-size: 12px;
+      color: #7b6e5d;
+      line-height: 1.35;
+    }
+
+    body.career-modal-open {
+      overflow: hidden;
+    }
+
+    .career-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 140;
+      display: grid;
+      place-items: center;
+      padding: 14px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .career-modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .career-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(23, 18, 12, 0.18);
+      -webkit-backdrop-filter: blur(8px) saturate(125%);
+      backdrop-filter: blur(8px) saturate(125%);
+    }
+
+    .career-modal-panel {
+      position: relative;
+      width: min(100%, 560px);
+      max-height: min(92dvh, 760px);
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.52);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 252, 248, 0.72) 55%, rgba(255, 246, 241, 0.68) 100%);
+      box-shadow: 0 24px 56px rgba(30, 22, 12, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      -webkit-backdrop-filter: blur(20px) saturate(125%);
+      backdrop-filter: blur(20px) saturate(125%);
+      padding: 16px;
+      overflow: auto;
+      overscroll-behavior: contain;
+    }
+
+    .career-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      border: 1px solid rgba(236, 230, 218, 0.95);
+      background: rgba(255, 255, 255, 0.72);
+      color: #58462a;
+      font: inherit;
+      font-size: 22px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .career-modal-title {
+      margin: 6px 44px 0 0;
+      color: #2f271d;
+      font-size: clamp(24px, 3.2vw, 32px);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+    }
+
+    .career-modal-title span {
+      display: block;
+    }
+
+    .career-modal-copy {
+      margin: 8px 0 0;
+      color: #6a5e4e;
+      font-size: 13px;
+      line-height: 1.45;
+      max-width: 48ch;
+    }
+
+    .career-form {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .career-field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .career-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .career-field label {
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 600;
+      color: #5f5242;
+    }
+
+    .career-field input,
+    .career-field select,
+    .career-field textarea {
+      width: 100%;
+      border: 1px solid rgba(236, 230, 218, 0.95);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.72);
+      color: #2f271d;
+      font: inherit;
+      font-size: 14px;
+      line-height: 1.3;
+      padding: 10px 12px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    }
+
+    .career-field textarea {
+      resize: vertical;
+      min-height: 88px;
+    }
+
+    .career-form-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    .career-form-note {
+      font-size: 12px;
+      color: #756958;
+      line-height: 1.35;
+    }
+
+    .career-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(199, 168, 101, 0.48);
+      background: linear-gradient(180deg, rgba(255, 248, 231, 0.98) 0%, rgba(255, 237, 205, 0.96) 100%);
+      color: #634a1d;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.86);
+      cursor: pointer;
+    }
+
+    :is(.brand, .footer-brand, .headline, .hero-tagline span, .focus h2 span, .career-head h2, .career-card h3, .career-scroll-note, .career-modal-role, .product-card h4) {
+      background-image: var(--radiant-gold-pink-glossy);
+      background-size: 220% 100%, 210% 100%, 180% 100%;
+      background-position: -4% 50%, 0% 50%, 0% 50%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      filter: saturate(1.04) brightness(0.98) drop-shadow(0 1px 0 rgba(255, 246, 214, 0.28));
+      text-shadow: 0 0 0 rgba(0, 0, 0, 0.001), 0 1px 0 rgba(122, 84, 26, 0.08);
+      animation: radiantShiftSoft 24s ease-in-out infinite;
+    }
+
+    .brand {
+      background-size: 240% 100%, 225% 100%, 200% 100%;
+      animation: radiantShiftSoft 22s ease-in-out infinite;
+    }
+
+    .hero-tagline span {
+      background-size: 235% 100%, 220% 100%, 195% 100%;
+      animation: radiantShiftSoft 23.5s ease-in-out infinite;
+    }
+
+    .headline,
+    .footer-brand,
+    .career-head h2 {
+      animation-duration: 22.5s;
+    }
+
+    .focus h2 span,
+    .product-card h4,
+    .career-card h3,
+    .career-scroll-note,
+    .career-modal-role {
+      animation-duration: 28s;
+    }
+
+    .content :is(.inline-link, .discover-body a) {
+      background-image: var(--radiant-gold-pink-glossy);
+      background-size: 205% 100%, 195% 100%, 175% 100%;
+      background-position: -3% 50%, 0% 50%, 0% 50%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      animation: radiantShiftSoft 30s ease-in-out infinite;
+    }
+
+    .content :is(.inline-link, .discover-body a):hover {
+      animation: radiantShiftSoft 16s ease-in-out infinite;
+    }
+
+    @keyframes radiantShiftSoft {
+      0% {
+        background-position: -4% 50%, 0% 50%, 0% 50%;
+      }
+
+      50% {
+        background-position: 3% 50%, 4% 50%, 3% 50%;
+      }
+
+      100% {
+        background-position: -4% 50%, 0% 50%, 0% 50%;
+      }
+    }
+
+    .main-nav a:hover {
+      background-image: none;
+      color: #3e3424;
+      -webkit-text-fill-color: currentColor;
+    }
+
+    .focus h2,
+    .confidence-title h2,
+    .big-question h2,
+    .discover h2,
+    .faq-wrap h2 {
+      font-size: clamp(30px, 4.2vw, 56px);
+      line-height: 1.02;
+      max-width: 18ch;
+    }
+
+    .split-promo h3,
+    .feature-content h3 {
+      font-size: clamp(28px, 3.9vw, 48px);
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+    }
+
+    .drop-title {
+      font-size: clamp(40px, 5.4vw, 72px);
+      line-height: 0.9;
+    }
+
+    .product-card h4,
+    .drop-side-body h3 {
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.15;
+    }
+
+    .focus p,
+    .feature-content p,
+    .product-card p,
+    .drop-side-body p,
+    .discover-body p,
+    .faq-answer,
+    .metric-copy {
+      font-size: clamp(13px, 1.15vw, 15px);
+      line-height: 1.5;
+    }
+
+    .faq-question {
+      font-size: clamp(14px, 1.35vw, 17px);
+      line-height: 1.35;
+    }
+
+    .main-nav a {
+      font-size: clamp(12px, 0.95vw, 14px);
+      line-height: 1.15;
+    }
+
+    .eyebrow,
+    .metric-kicker,
+    .product-tag,
+    .pill {
+      font-size: 11px;
+      line-height: 1.2;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-col h3 {
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .footer-col a,
+    .footer-col p {
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .footer-meta,
+    .footer-links a {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .discover-body p {
+      min-height: 52px;
+    }
+
+    .feature-content p {
+      color: rgba(255, 251, 243, 0.96);
+      text-shadow: 0 1px 10px rgba(17, 12, 7, 0.18);
+    }
+
+    .drop-main p {
+      color: rgba(255, 252, 245, 0.98);
+      text-shadow: 0 1px 10px rgba(23, 15, 8, 0.24);
+    }
+
+    /* Reduce non-hero motion clutter: keep hero banner animation only */
+    .reveal,
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .menu-toggle,
+    .main-nav a,
+    .btn,
+    .trust-card,
+    .product-card,
+    .discover-card,
+    .feature-media,
+    .faq-symbol,
+    .faq-answer {
+      transition: none;
+    }
+
+    .menu-icon::before,
+    .menu-icon::after,
+    .menu-icon span {
+      transition: none;
+    }
+
+    .btn:hover,
+    .trust-card:hover,
+    .product-card:hover,
+    .discover-card:hover {
+      transform: none;
+    }
+
+    .feature-media,
+    .feature-card:hover .feature-media {
+      transform: none;
+    }
+
+    /* Bring back a few controlled micro-animations (text + icons) */
+    .menu-toggle {
+      transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .menu-toggle:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(92, 72, 39, 0.08);
+    }
+
+    .menu-icon::before,
+    .menu-icon::after,
+    .menu-icon span {
+      transition: top 0.24s ease, transform 0.24s ease, opacity 0.24s ease;
+    }
+
+    .trust-icon {
+      animation: iconBobSoft 3.2s ease-in-out infinite;
+      box-shadow: 0 0 0 0 rgba(201, 167, 98, 0.18);
+    }
+
+    .trust-card:nth-child(2) .trust-icon {
+      animation-delay: 0.35s;
+    }
+
+    .trust-card:nth-child(3) .trust-icon {
+      animation-delay: 0.7s;
+    }
+
+    .social-link {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 16px rgba(92, 72, 39, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+      border-color: rgba(199, 168, 101, 0.42);
+    }
+
+    .social-link .social-mark {
+      animation: iconPulseSoft 2.9s ease-in-out infinite;
+    }
+
+    .footer-social .social-link:nth-child(2) .social-mark {
+      animation-delay: 0.25s;
+    }
+
+    .footer-social .social-link:nth-child(3) .social-mark {
+      animation-delay: 0.5s;
+    }
+
+    .footer-social .social-link:nth-child(4) .social-mark {
+      animation-delay: 0.75s;
+    }
+
+    .career-apply {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .career-apply::after {
+      content: "";
+      position: absolute;
+      inset: -1px auto -1px -42%;
+      width: 34%;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 249, 229, 0.85), rgba(255, 255, 255, 0));
+      transform: skewX(-18deg);
+      animation: buttonSheenSoft 4.4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes iconPulseSoft {
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(255, 213, 140, 0);
+      }
+
+      50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 10px rgba(255, 213, 140, 0.28);
+      }
+    }
+
+    @keyframes iconBobSoft {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-2px);
+      }
+    }
+
+    @keyframes buttonSheenSoft {
+      0%,
+      78% {
+        left: -42%;
+        opacity: 0;
+      }
+
+      82% {
+        opacity: 0.9;
+      }
+
+      100% {
+        left: 118%;
+        opacity: 0;
+      }
+    }
+
+    .hero::before {
+      animation: blastSweep 8.6s cubic-bezier(0.45, 0.05, 0.2, 0.95) infinite, burstFlicker 2.4s ease-in-out infinite;
+    }
+
+    .hero::after {
+      animation: heroGlow 5.8s ease-in-out infinite;
+    }
+
+    .hero-art {
+      animation: heroFloat 4.8s ease-in-out infinite;
+    }
+
+    @media (min-width: 901px) {
+      .site-header {
+        padding: 0;
+        overflow: visible;
+        background: rgba(255, 255, 255, 0.9);
+        border-bottom: 1px solid rgba(236, 230, 218, 0.95);
+        box-shadow: 0 8px 24px rgba(92, 72, 39, 0.06);
+      }
+
+      .site-header::before,
+      .site-header::after {
+        content: none;
+      }
+
+      .topbar {
+        min-height: 72px;
+        padding: 10px clamp(18px, 2.2vw, 28px);
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .brand {
+        font-size: clamp(11px, 0.95vw, 14px);
+        max-width: min(36vw, 340px);
+      }
+
+      .main-nav {
+        gap: 8px;
+      }
+
+      .main-nav a {
+        font-size: clamp(12px, 0.92vw, 14px);
+        font-weight: 600;
+        padding: 8px 12px;
+        border-color: rgba(236, 230, 218, 0.95);
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: none;
+      }
+
+      .main-nav a:hover {
+        box-shadow: none;
+      }
+
+      .hero {
+        padding-top: clamp(24px, 3.2vw, 42px);
+        padding-bottom: clamp(18px, 2.4vw, 28px);
+      }
+
+      .hero-art {
+        margin-top: clamp(14px, 1.8vw, 22px);
+        background-position: center;
+      }
+
+      .hero-tagline {
+        margin-top: 12px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .main-nav a {
+        background: rgba(255, 255, 255, 0.94);
+      }
+
+      .site-header.nav-open {
+        background: rgba(38, 30, 20, 0.16);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+      }
+
+      .site-header.nav-open .topbar {
+        width: min(86vw, 420px);
+        min-height: auto;
+        background: rgba(255, 255, 255, 0.99);
+        border: 1px solid rgba(236, 230, 218, 0.95);
+        border-radius: 18px;
+        box-shadow: 0 20px 48px rgba(92, 72, 39, 0.18);
+        gap: 8px;
+        padding: 14px;
+      }
+
+      .site-header.nav-open .brand {
+        font-size: clamp(13px, 3.3vw, 16px);
+        color: #4f4128;
+        max-width: calc(100% - 70px);
+      }
+
+      .site-header.nav-open .menu-toggle {
+        min-width: 52px;
+        min-height: 52px;
+        border-radius: 14px;
+        border-color: rgba(236, 230, 218, 0.95);
+        background: rgba(255, 255, 255, 0.99);
+      }
+
+      .site-header.nav-open .menu-icon {
+        width: 18px;
+        height: 14px;
+      }
+
+      .site-header.nav-open .menu-icon::before,
+      .site-header.nav-open .menu-icon::after,
+      .site-header.nav-open .menu-icon span {
+        top: 6px;
+      }
+
+      .site-header.nav-open .main-nav {
+        margin-top: 8px;
+        padding-top: 10px;
+        gap: 8px;
+        border-top-color: rgba(236, 230, 218, 0.95);
+        align-items: stretch;
+      }
+
+      .site-header.nav-open .main-nav a {
+        min-width: 0;
+        max-width: none;
+        width: 100%;
+        text-align: left;
+        padding: 10px 12px;
+        font-size: clamp(15px, 3.6vw, 18px);
+        color: #413524;
+        background: rgba(255, 251, 242, 0.98);
+        border: 1px solid transparent;
+        background-image: none;
+        -webkit-background-clip: border-box;
+        background-clip: border-box;
+        -webkit-text-fill-color: currentColor;
+        animation: none;
+      }
+
+      .site-header.nav-open .main-nav a::after {
+        content: none;
+      }
+
+      .split-promo,
+      .faq-list {
+        padding: 14px;
+      }
+
+      .stats {
+        width: calc(100% - 24px);
+      }
+
+      .career-card {
+        flex-basis: min(84vw, 360px);
+      }
+
+      .footer-top {
+        align-items: flex-start;
+      }
+
+      .footer-top-right {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .career-form {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .section {
+        padding: 22px 12px;
+      }
+
+      .brand {
+        max-width: min(62vw, 260px);
+      }
+
+      .strip-art,
+      .feature-card,
+      .split-promo,
+      .drop-main,
+      .drop-side,
+      .faq-list {
+        border-radius: 16px;
+      }
+
+      .footer {
+        padding-inline: 12px;
+      }
+
+      .social-link.linkedin .social-label {
+        display: none;
+      }
+
+      .social-link.linkedin {
+        width: 34px;
+        padding: 0;
+      }
+
+      .career-scroll-btn {
+        width: 34px;
+        height: 34px;
+      }
+
+      .career-modal-panel {
+        max-height: calc(100dvh - 18px);
+        padding: 14px;
+        border-radius: 18px;
+      }
+
+      .career-modal-close {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+      }
+    }
+
+    /* Final alignment cleanup (shared rails, card heights, footer/mobile consistency) */
+    :root {
+      --page-gutter: clamp(14px, 2.2vw, 28px);
+    }
+
+    .topbar,
+    .section,
+    .footer {
+      padding-inline: var(--page-gutter);
+    }
+
+    .section {
+      scroll-margin-top: 88px;
+    }
+
+    .topbar {
+      width: min(100%, var(--max-width));
+      margin-inline: auto;
+      gap: clamp(10px, 1.4vw, 18px);
+    }
+
+    .topbar > * {
+      min-width: 0;
+    }
+
+    .main-nav {
+      margin-left: auto;
+      min-width: 0;
+      overflow-x: auto;
+      padding-bottom: 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .main-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+    }
+
+    .split-promo,
+    .drop-grid,
+    .faq-wrap,
+    .footer-top,
+    .footer-meta {
+      align-items: start;
+    }
+
+    .split-promo > *,
+    .drop-grid > *,
+    .faq-wrap > *,
+    .footer-top > *,
+    .footer-meta > * {
+      min-width: 0;
+    }
+
+    .trust-list,
+    .product-list,
+    .discover-row,
+    .footer-grid {
+      align-items: stretch;
+    }
+
+    .trust-card,
+    .product-card,
+    .discover-card,
+    .footer-col {
+      height: 100%;
+    }
+
+    .product-card {
+      display: grid;
+      grid-template-rows: auto auto auto 1fr;
+      align-content: start;
+      gap: 6px;
+    }
+
+    .product-media {
+      margin-bottom: 0;
+    }
+
+    .product-card p {
+      margin-top: 0;
+    }
+
+    .discover-card {
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .discover-body {
+      display: grid;
+      align-content: start;
+      gap: 8px;
+      height: 100%;
+    }
+
+    .discover-body a {
+      margin-top: auto;
+      align-self: start;
+    }
+
+    .footer-grid {
+      align-items: start;
+    }
+
+    .footer-col {
+      display: grid;
+      align-content: start;
+      gap: 4px;
+    }
+
+    .footer-col h3 {
+      margin-bottom: 4px;
+    }
+
+    .footer-top-right {
+      margin-left: auto;
+    }
+
+    .footer-meta {
+      align-items: center;
+    }
+
+    .footer-meta > span {
+      max-width: 70ch;
+    }
+
+    .stats {
+      margin-top: clamp(12px, 1.5vw, 18px);
+      margin-bottom: clamp(4px, 0.6vw, 8px);
+    }
+
+    .metric {
+      min-width: 0;
+    }
+
+    .metric-copy {
+      max-width: none;
+    }
+
+    .career-head {
+      max-width: none;
+    }
+
+    .career-toolbar {
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .career-carousel {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .career-list {
+      align-items: stretch;
+      scroll-padding-inline: 2px;
+      padding-bottom: 12px;
+    }
+
+    .career-card {
+      grid-template-rows: auto auto 1fr auto;
+    }
+
+    .career-actions {
+      margin-top: auto;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .career-note {
+      max-width: 26ch;
+    }
+
+    .career-modal {
+      align-items: center;
+      justify-items: center;
+    }
+
+    .career-modal-panel {
+      margin: 0 auto;
+    }
+
+    @media (max-width: 900px) {
+      .topbar {
+        width: 100%;
+      }
+
+      .stats {
+        width: calc(100% - (var(--page-gutter) * 2));
+      }
+
+      .footer-top-right {
+        margin-left: 0;
+      }
+
+      .footer-meta {
+        align-items: flex-start;
+      }
+
+      .site-header.nav-open .main-nav a {
+        justify-content: flex-start;
+      }
+
+      .career-card {
+        flex: 0 0 min(84vw, 340px);
+        min-height: 224px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --page-gutter: 12px;
+      }
+
+      .hero {
+        padding-bottom: clamp(14px, 3.2vw, 18px);
+      }
+
+      .stats {
+        width: calc(100% - 24px);
+        gap: 10px;
+      }
+
+      .metric {
+        align-items: start;
+      }
+
+      .career-toolbar {
+        align-items: center;
+      }
+
+      .career-scroll-controls {
+        margin-inline: auto;
+      }
+
+      .career-card {
+        flex-basis: min(88vw, 320px);
+        min-height: 212px;
+      }
+
+      .career-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-top,
+      .footer-meta {
+        gap: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
 <body>
-    <a class="skip-link" href="#hero">Skip to content</a>
+  <a class="skip-link" href="#home">Skip to content</a>
 
+  <div class="site-shell">
     <header class="site-header">
-        <nav class="navbar" aria-label="Global navigation">
-            <a href="#hero" class="logo">Prithvi Resorts And Holiday Pvt Ltd</a>
-
-            <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">Menu</button>
-
-            <div class="nav-right" id="primary-nav">
-                <ul class="nav-links">
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#highlights">Highlights</a></li>
-                    <li><a href="#destinations">Destinations</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#services">Our Services</a></li>
-                    <li><a href="#experiences">Experiences</a></li>
-                    <li><a href="#sustainability">Sustainability</a></li>
-                </ul>
-                <a href="#contact" class="nav-cta">Contact</a>
-            </div>
+      <div class="topbar">
+        <a class="brand" href="#home">Prithvi Resorts And Holiday Pvt Ltd</a>
+        <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+          <span class="menu-icon" aria-hidden="true"><span></span></span>
+        </button>
+        <nav id="primary-nav" class="main-nav" aria-label="Primary">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#plans">Plans</a>
+          <a href="#highlights">Highlights</a>
+          <a href="#discover">Discover</a>
+          <a href="#faq">FAQ</a>
+          <a href="#career">Career</a>
+          <a href="#contact">Contact</a>
         </nav>
+      </div>
     </header>
 
-    <main>
-        <section id="hero" class="hero section-anchor">
-            <div class="hero-ambient" aria-hidden="true">
-                <span class="orb orb-a"></span>
-                <span class="orb orb-b"></span>
+    <main id="home" class="content">
+      <section class="section hero">
+        <div class="hero-copy reveal">
+          <h1 class="headline">Speed of comfort.</h1>
+          <div class="hero-art media-frame" data-image="images/1-2.png" data-image-desktop="images/hero.png" data-fallback="images/1-2.png" role="img" aria-label="Signature travel visual"></div>
+          <p class="hero-tagline">Built for <span>Holiday Journeys.</span></p>
+        </div>
+      </section>
+
+      <section class="stats reveal" aria-label="Performance highlights">
+        <div class="badge">PR<small>Stay+</small></div>
+        <article class="metric">
+          <p class="metric-kicker">Up to</p>
+          <p class="metric-value" data-count="3" data-suffix="x">3x</p>
+          <p class="metric-copy">faster itinerary matching for first-time travelers</p>
+        </article>
+        <article class="metric">
+          <p class="metric-kicker">Up to</p>
+          <p class="metric-value" data-count="2" data-suffix="x">2x</p>
+          <p class="metric-copy">faster stay and transport booking flow</p>
+        </article>
+        <article class="metric">
+          <p class="metric-kicker">Up to</p>
+          <p class="metric-value green" data-count="18" data-suffix=" hrs">18 hrs</p>
+          <p class="metric-copy">daily support window for active trips</p>
+        </article>
+      </section>
+
+      <section class="section visual-strip">
+        <div class="strip-art media-frame reveal" data-image="images/stock-strip.jpg" data-fallback="images/stock-banner.jpg" role="img" aria-label="Destination landscape"></div>
+      </section>
+
+      <section id="about" class="section focus reveal">
+        <p class="eyebrow">Travel Intelligence</p>
+        <h2><span>Plan more.</span><br>Stress less.</h2>
+        <p>From family holidays to premium retreats, compare destinations, lock the right stay, and coordinate every day of your journey with less effort.</p>
+      </section>
+
+      <section class="section split-promo reveal">
+        <div>
+          <p class="eyebrow">Gold Plan</p>
+          <h3>Get 3 bonus nights on selected annual holiday plans.</h3>
+          <a class="inline-link" href="#plans">Learn more about Gold Plan &gt;</a>
+        </div>
+        <div class="promo-art media-frame" data-image="images/stock-promo.jpg" data-fallback="images/stock-strip.jpg" role="img" aria-label="Premium resort experience"></div>
+      </section>
+
+      <section id="highlights" class="section confidence-title reveal">
+        <h2>Shop with confidence for your next stay.</h2>
+      </section>
+
+      <section class="section trust-grid reveal">
+        <div class="trust-list">
+          <article class="trust-card">
+            <span class="trust-icon">&#10003;</span>
+            <p>Get our price match promise.</p>
+            <span class="pill">Learn more</span>
+          </article>
+          <article class="trust-card">
+            <span class="trust-icon">?</span>
+            <p>Answers and support at your fingertips.</p>
+            <span class="pill">Learn more</span>
+          </article>
+          <article class="trust-card">
+            <span class="trust-icon">i</span>
+            <p>Flexible check-in and delivery windows.</p>
+            <span class="pill">Learn more</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section feature-banner reveal">
+        <article class="feature-card">
+          <div class="feature-media media-frame" data-image="images/stock-banner.jpg" data-fallback="images/stock-strip.jpg" role="img" aria-label="Featured escape card"></div>
+          <div class="feature-overlay"></div>
+          <div class="feature-content">
+            <div>
+              <h3>Signature Escape</h3>
+              <p>Book forest stays, riverside activities, and curated local experiences in one pass.</p>
             </div>
-
-            <div class="container hero-grid hero-showcase">
-                <div class="hero-copy hero-copy-centered reveal">
-                    <p class="eyebrow">Prithvi Resorts And Holiday Pvt Ltd</p>
-                    <h1>Stay in <span>lightness.</span></h1>
-                    <p class="hero-intro">A premium holiday platform for immersive nature stays, riverside calm, and elevated travel experiences in Dandeli.</p>
-                    <div class="hero-actions">
-                        <a href="#destinations" class="button-primary">Explore Destinations</a>
-                        <a href="#about" class="scroll-indicator">See the Story</a>
-                    </div>
-                </div>
-
-                <div class="hero-device-stage reveal" data-hero-stage role="img" aria-label="Floating luxury room card with reflective base">
-                    <div class="hero-canvas">
-                        <div class="hero-banner-panel panel-dark" aria-hidden="true">
-                            <img src="https://dandelijungleedgeresort.com/wp-content/uploads/2025/12/DSC02658-HDR-scaled.jpg" alt="" loading="eager">
-                        </div>
-                        <div class="hero-banner-panel panel-light" aria-hidden="true">
-                            <img src="https://dandeliriverpoint.com/wp-content/uploads/elementor/thumbs/DSC06426-HDR-scaled-rg4wfs65n1mlncv95u92pgcsk1pasg0oc50ijp3qns.jpg" alt="" loading="eager">
-                        </div>
-                    </div>
-                </div>
-
-                <p class="hero-footnote reveal"><span>Built for nature-first experiences.</span></p>
+            <div class="feature-actions">
+              <a class="btn" href="#plans">Learn more</a>
+              <a class="btn" href="#contact">Book</a>
             </div>
-        </section>
+          </div>
+        </article>
+      </section>
 
-        <section id="about" class="section section-anchor">
-            <div class="container about-layout">
-                <div class="reveal">
-                    <p class="eyebrow">The Prithvi Standard</p>
-                    <h2>A Mission for Nature and Wellness.</h2>
-                    <p class="narrative-copy">Prithvi Resorts And Holiday Pvt Ltd is a leading provider of exceptional holiday experiences in India. Our mission is to offer bespoke holiday packages that bring people closer to nature, culture, and wellness.</p>
-                    <p class="narrative-copy">As a premier hospitality group, we serve as the parent company to a curated portfolio of resorts. We focus on delivering personalized experiences that cater to all kinds of travelers, from families to corporate groups, working tirelessly to create unforgettable memories in some of the country&rsquo;s most beautiful and serene locations.</p>
-                </div>
-                <div class="about-highlight reveal">
-                    <p>Nature-led stays. Human-first service. Intentional travel experiences.</p>
-                </div>
+      <section id="plans" class="section product-grid reveal">
+        <div class="product-list">
+          <article class="product-card">
+            <div class="product-media media-frame" data-image="images/stock-strip.jpg" data-fallback="images/stock-banner.jpg" role="img" aria-label="Dandeli Nadi Teera package"></div>
+            <p class="product-tag">Free Daytrip</p>
+            <h4>Dandeli Nadi Teera</h4>
+            <p>From INR 12,990 for 2 nights with guided activities.</p>
+          </article>
+          <article class="product-card">
+            <div class="product-media media-frame" data-image="images/stock-banner.jpg" data-fallback="images/stock-strip.jpg" role="img" aria-label="Dandeli Jungle Edge package"></div>
+            <p class="product-tag">Free Upgrade</p>
+            <h4>Dandeli Jungle Edge</h4>
+            <p>From INR 16,490 with breakfast and nature trail.</p>
+          </article>
+          <article class="product-card">
+            <div class="product-media media-frame" data-image="images/stock-promo.jpg" data-fallback="images/stock-strip.jpg" role="img" aria-label="River Point Dandeli package"></div>
+            <p class="product-tag">Gold Plan</p>
+            <h4>River Point Dandeli</h4>
+            <p>From INR 9,490 with yoga, spa credit, and meals.</p>
+          </article>
+          <article class="product-card">
+            <div class="product-media media-frame" data-image="images/stock-banner.jpg" data-fallback="images/stock-strip.jpg" role="img" aria-label="Signature family package"></div>
+            <p class="product-tag">Family Saver</p>
+            <h4>Signature Family Stay</h4>
+            <p>From INR 8,990 with kids activities and evening events.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section big-question reveal">
+        <h2>What if your new holiday never got old?</h2>
+      </section>
+
+      <section class="section drop-grid reveal">
+        <article class="drop-main media-frame" data-image="images/stock-strip.jpg" data-fallback="images/stock-banner.jpg" role="img" aria-label="Seasonal travel drop campaign">
+          <div>
+            <p class="drop-kicker">Seasonal Drop</p>
+            <h3 class="drop-title">New Stories.</h3>
+          </div>
+          <p>Fresh stays, local festivals, and limited-time routes every season so each trip feels new.</p>
+        </article>
+
+        <article class="drop-side">
+          <div class="drop-side-media media-frame" data-image="images/stock-promo.jpg" data-fallback="images/stock-strip.jpg" role="img" aria-label="Guest story"></div>
+          <div class="drop-side-body">
+            <h3>Stay New</h3>
+            <p>Travelers keep coming back for fresh itineraries, better upgrades, and reliable support.</p>
+            <a class="inline-link" href="#discover">Explore Stories &gt;</a>
+          </div>
+        </article>
+      </section>
+
+      <section id="discover" class="section discover reveal">
+        <h2>Discover more travel stories.</h2>
+        <div class="discover-row">
+          <article class="discover-card">
+            <div class="discover-media media-frame" data-image="images/stock-strip.jpg" data-fallback="images/stock-banner.jpg" role="img" aria-label="Destination stories"></div>
+            <div class="discover-body">
+              <p>Get the best deals from riverside retreats to forest hideaways.</p>
+              <a href="#plans">Read article &gt;</a>
             </div>
-        </section>
-
-        <section id="highlights" class="section section-anchor">
-            <div class="container">
-                <h2>Highlights From Dandeli.</h2>
-                <p class="section-subtext">Photo-led moments that capture the calm, the river, and the adventure.</p>
-
-                <div class="highlight-grid">
-                    <article class="highlight-card reveal" style="--bg-url: url('https://dandelijungleedgeresort.com/wp-content/uploads/2024/06/1-29-min-600x540.jpg');">
-                        <div class="highlight-content">
-                            <p class="highlight-tag">Jungle Edge Resort</p>
-                            <h3>Forest Retreats</h3>
-                            <p>Wake up to birdsong, misty trails, and forest-side serenity.</p>
-                        </div>
-                    </article>
-                    <article class="highlight-card reveal" style="--bg-url: url('https://dandeliriverpoint.com/wp-content/uploads/elementor/thumbs/DSC06426-HDR-scaled-rg4wfs65n1mlncv95u92pgcsk1pasg0oc50ijp3qns.jpg');">
-                        <div class="highlight-content">
-                            <p class="highlight-tag">River Point</p>
-                            <h3>Riverside Living</h3>
-                            <p>Slow mornings by the water and sunset decks in Dandeli.</p>
-                        </div>
-                    </article>
-                    <article class="highlight-card reveal" style="--bg-url: url('https://dandeliriverpoint.com/wp-content/uploads/elementor/thumbs/DJI_0136-Enhanced-NR-1-scaled-rgaderst86noyet5rgjpakftl147rbr89a2hjt80qg.jpg');">
-                        <div class="highlight-content">
-                            <p class="highlight-tag">Dandeli Escapes</p>
-                            <h3>Adventure Views</h3>
-                            <p>Experience aerial vistas and the bold landscape of Karnataka.</p>
-                        </div>
-                    </article>
-                </div>
+          </article>
+          <article class="discover-card">
+            <div class="discover-media media-frame" data-image="images/stock-promo.jpg" data-fallback="images/stock-strip.jpg" role="img" aria-label="Guest recommendation stories"></div>
+            <div class="discover-body">
+              <p>For stunningly edited trips and simpler day-by-day planning.</p>
+              <a href="#plans">Read article &gt;</a>
             </div>
-        </section>
-
-        <section id="destinations" class="section section-alt section-anchor">
-            <div class="container">
-                <h2>Explore Our Destinations.</h2>
-                <p class="section-subtext">Curated experiences in India&rsquo;s most pristine locations.</p>
-
-                <div class="resort-cards">
-                    <article class="resort-tile tile-jungle reveal">
-                        <span class="tile-name-card">Jungle Edge Resort &middot; Dandeli</span>
-                        <div class="tile-overlay">
-                            <p class="tile-brand">Jungle Edge Resort, Dandeli</p>
-                            <h3>Forest-luxe stays in Dandeli, Karnataka.</h3>
-                            <p>A premier subsidiary of Prithvi Resorts in Dandeli, Karnataka, India&mdash;crafted for immersive forest escapes without compromising on comfort.</p>
-                            <a href="https://dandelijungleedgeresort.com/" target="_blank" rel="noopener noreferrer">Visit dandelijungleedgeresort.com &#8599;</a>
-                        </div>
-                    </article>
-
-                    <article class="resort-tile tile-river reveal">
-                        <span class="tile-name-card">River Point &middot; Dandeli</span>
-                        <div class="tile-overlay">
-                            <p class="tile-brand">River Point, Dandeli</p>
-                            <h3>Life on the water&rsquo;s edge.</h3>
-                            <p>A Dandeli, Karnataka, India retreat focused on aquatic serenity and restorative days by the river.</p>
-                            <a href="https://dandeliriverpoint.com/" target="_blank" rel="noopener noreferrer">Visit dandeliriverpoint.com &#8599;</a>
-                        </div>
-                    </article>
-
-                    <article class="resort-tile tile-tulsi reveal">
-                        <span class="tile-name-card">Tulsi Resort &middot; Dandeli</span>
-                        <div class="tile-overlay">
-                            <p class="tile-brand">Tulsi Resort, Dandeli</p>
-                            <h3>Authentic heritage. Natural grace.</h3>
-                            <p>An upcoming eco-forward stay in Dandeli, Karnataka, India built for slow, soulful travel.</p>
-                            <a href="#contact">Enquire about Tulsi Resort &#8599;</a>
-                        </div>
-                    </article>
-                </div>
+          </article>
+          <article class="discover-card">
+            <div class="discover-media media-frame" data-image="images/stock-banner.jpg" data-fallback="images/stock-strip.jpg" role="img" aria-label="Travel updates"></div>
+            <div class="discover-body">
+              <p>The latest travel updates for smarter bookings and faster support.</p>
+              <a href="#plans">Read article &gt;</a>
             </div>
-        </section>
+          </article>
+        </div>
+      </section>
 
-        <section id="gallery" class="section section-anchor">
-            <div class="container">
-                <h2>Dandeli Photo Gallery.</h2>
-                <p class="section-subtext">Photo highlights from our resort destinations in Dandeli.</p>
+      <section id="faq" class="section faq-wrap reveal">
+        <div>
+          <p class="eyebrow">Need help?</p>
+          <h2>Frequently asked questions.</h2>
+        </div>
+        <div class="faq-list">
+          <article class="faq-item open">
+            <button class="faq-question" type="button" aria-expanded="true">
+              <span>What can I transfer from my old booking to my new travel plan?</span>
+              <span class="faq-symbol">+</span>
+            </button>
+            <p class="faq-answer">You can carry traveler details, meal preferences, and add-on requests to new plans. Dates and room categories can be adjusted based on availability.</p>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Is it easy to move traveler data from one plan to another?</span>
+              <span class="faq-symbol">+</span>
+            </button>
+            <p class="faq-answer">Yes. Use your profile dashboard to reuse traveler details and documents. Our support team can also help with bulk itinerary updates.</p>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Are group rates better on bundled resort and holiday plans?</span>
+              <span class="faq-symbol">+</span>
+            </button>
+            <p class="faq-answer">Group rates include bundled transfers and meal plans, and are usually lower than booking each item separately during the same travel period.</p>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>How fast can I get support while traveling?</span>
+              <span class="faq-symbol">+</span>
+            </button>
+            <p class="faq-answer">Support teams are available up to 18 hours daily with priority handling for active trips and same-day itinerary changes.</p>
+          </article>
+        </div>
+      </section>
 
-                <div class="apple-gallery-grid" role="region" aria-label="Dandeli photo gallery cards">
-                    <article class="apple-gallery-card card-dark reveal">
-                        <div class="apple-gallery-copy">
-                            <h3>Jungle Edge Resort</h3>
-                            <p>Forest-luxe rooms crafted for silence, comfort, and canopy mornings.</p>
-                            <p class="apple-gallery-note">Nature-first premium stay</p>
-                        </div>
-                        <img class="apple-gallery-image" src="https://dandelijungleedgeresort.com/wp-content/uploads/2025/12/DSC02658-HDR-scaled.jpg" alt="Jungle Edge Resort premium room in Dandeli" loading="lazy">
-                    </article>
-
-                    <article class="apple-gallery-card card-light reveal">
-                        <div class="apple-gallery-copy">
-                            <h3>River Point Retreat</h3>
-                            <p>Open decks, blue-water views, and calm riverside evenings in Dandeli.</p>
-                            <p class="apple-gallery-note">Riverside signature experiences</p>
-                        </div>
-                        <img class="apple-gallery-image" src="https://dandeliriverpoint.com/wp-content/uploads/elementor/thumbs/pool-scaled-rg4vwzecybw5g46axppou74wumd0uddxr3ax0gz73s.jpg" alt="River Point pool and deck view" loading="lazy">
-                    </article>
-
-                    <article class="apple-gallery-card card-neutral reveal">
-                        <div class="apple-gallery-copy">
-                            <h3>Dandeli Adventures</h3>
-                            <p>Trails, aerial views, and curated activity days built for every pace.</p>
-                            <p class="apple-gallery-note">Adventure with comfort</p>
-                        </div>
-                        <img class="apple-gallery-image" src="https://dandeliriverpoint.com/wp-content/uploads/elementor/thumbs/DJI_0136-Enhanced-NR-1-scaled-rgaderst86noyet5rgjpakftl147rbr89a2hjt80qg.jpg" alt="Aerial Dandeli adventure landscape" loading="lazy">
-                    </article>
-                </div>
+      <section id="career" class="section career reveal">
+        <div class="career-wrap">
+          <div class="career-head">
+            <p class="eyebrow">Career</p>
+            <h2>Join our resort and holiday team.</h2>
+            <p class="career-copy">We are hiring for hospitality, kitchen, operations, and guest support roles. Share your resume and role preference to apply. Freshers can also apply for entry-level positions.</p>
+            <div class="career-toolbar">
+              <p class="career-scroll-note">Scroll jobs to view all openings</p>
+              <div class="career-scroll-controls" aria-label="Career carousel controls">
+                <button class="career-scroll-btn" type="button" data-career-scroll="prev" aria-label="Previous jobs">&#8592;</button>
+                <button class="career-scroll-btn" type="button" data-career-scroll="next" aria-label="Next jobs">&#8594;</button>
+              </div>
             </div>
-        </section>
+          </div>
 
-        <section id="services" class="section section-anchor">
-            <div class="container">
-                <h2>Tailored Experiences.</h2>
-                <p class="section-subtext">At Prithvi Resorts, we offer customized holiday packages designed to cater to your specific needs.</p>
+          <div class="career-carousel">
+          <div class="career-list" aria-label="Open job roles">
+            <article class="career-card">
+              <h3>Resort Manager</h3>
+              <ul class="career-meta">
+                <li>Full-time</li>
+                <li>On-site</li>
+                <li>Dandeli</li>
+              </ul>
+              <p>Lead daily operations, guest service quality, staffing coordination, and vendor management across resort activities.</p>
+              <div class="career-actions">
+                <button class="career-apply" type="button" data-role="Resort Manager">Apply Now</button>
+                <span class="career-note">2+ years hospitality operations preferred</span>
+              </div>
+            </article>
 
-                <div class="service-grid">
-                    <article class="service-card service-wellness reveal">
-                        <p class="service-tag">Mind and Body</p>
-                        <h3>Wellness Retreats</h3>
-                        <p>Relax, rejuvenate, and revitalize with curated wellness experiences.</p>
-                    </article>
-                    <article class="service-card service-nature reveal">
-                        <p class="service-tag">Outdoors</p>
-                        <h3>Nature Adventures</h3>
-                        <p>Expert-led trekking, wildlife spotting, and river-based expeditions.</p>
-                    </article>
-                    <article class="service-card service-cultural reveal">
-                        <p class="service-tag">Culture</p>
-                        <h3>Cultural Experiences</h3>
-                        <p>Authentic local immersion and traditional heritage tours.</p>
-                    </article>
-                    <article class="service-card service-luxury reveal">
-                        <p class="service-tag">Premium</p>
-                        <h3>Luxury Getaways</h3>
-                        <p>Crafted with attention to detail for unmatched comfort and satisfaction.</p>
-                    </article>
-                    <article class="service-card service-corporate reveal">
-                        <p class="service-tag">Business and Leisure</p>
-                        <h3>Corporate Offsites</h3>
-                        <p>Team-building experiences that blend productivity with the peace of nature.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+            <article class="career-card">
+              <h3>Cook / Commis Chef</h3>
+              <ul class="career-meta">
+                <li>Full-time</li>
+                <li>Kitchen</li>
+                <li>Shift-based</li>
+              </ul>
+              <p>Prepare guest meals, maintain kitchen hygiene standards, support buffet and a la carte service, and manage prep workflow.</p>
+              <div class="career-actions">
+                <button class="career-apply" type="button" data-role="Cook / Commis Chef">Apply Now</button>
+                <span class="career-note">South/North Indian menu experience preferred</span>
+              </div>
+            </article>
 
-        <section id="experiences" class="section section-alt section-anchor">
-            <div class="container">
-                <div class="layers-header reveal">
-                    <p class="eyebrow">Experience Layers</p>
-                    <h2>Iconic Dandeli moments, layered and alive.</h2>
-                    <p class="section-subtext">Inspired by Apple-like depth and movement, each card stacks signature experiences into a single, immersive story.</p>
-                </div>
+            <article class="career-card">
+              <h3>Housekeeping Associate</h3>
+              <ul class="career-meta">
+                <li>Full-time</li>
+                <li>Rooms</li>
+                <li>On-site</li>
+              </ul>
+              <p>Handle room cleaning, linen upkeep, guest-request support, and checklist-based maintenance coordination with supervisors.</p>
+              <div class="career-actions">
+                <button class="career-apply" type="button" data-role="Housekeeping Associate">Apply Now</button>
+                <span class="career-note">Freshers welcome with training support</span>
+              </div>
+            </article>
 
-                <div class="layer-grid">
-                    <article class="layer-card tone-forest reveal" data-tilt>
-                        <div class="layer-stack">
-                            <span class="layer layer-base"></span>
-                            <span class="layer-photo" aria-hidden="true" style="--photo-url: url('https://dandelijungleedgeresort.com/wp-content/uploads/2025/12/DSC02658-HDR-scaled.jpg');"></span>
-                            <span class="layer layer-mid"></span>
-                            <span class="layer layer-top"></span>
-                            <span class="layer layer-glow"></span>
-                        </div>
-                        <div class="layer-body">
-                            <h3>Canopy Calm</h3>
-                            <p>Start with misty forest walks, a slow breakfast, and guided wildlife trails in Dandeli.</p>
-                            <div class="layer-tags">
-                                <span>Forest walks</span>
-                                <span>Bird calls</span>
-                                <span>Sunrise chai</span>
-                            </div>
-                        </div>
-                    </article>
+            <article class="career-card">
+              <h3>Front Office Executive</h3>
+              <ul class="career-meta">
+                <li>Full-time</li>
+                <li>Reception</li>
+                <li>Rotational shift</li>
+              </ul>
+              <p>Manage check-in/check-out, booking confirmations, guest calls, and coordination with housekeeping and transport teams.</p>
+              <div class="career-actions">
+                <button class="career-apply" type="button" data-role="Front Office Executive">Apply Now</button>
+                <span class="career-note">English + Kannada/Hindi communication preferred</span>
+              </div>
+            </article>
 
-                    <article class="layer-card tone-river reveal" data-tilt>
-                        <div class="layer-stack">
-                            <span class="layer layer-base"></span>
-                            <span class="layer-photo" aria-hidden="true" style="--photo-url: url('https://dandeliriverpoint.com/wp-content/uploads/elementor/thumbs/DSC06426-HDR-scaled-rg4wfs65n1mlncv95u92pgcsk1pasg0oc50ijp3qns.jpg');"></span>
-                            <span class="layer layer-mid"></span>
-                            <span class="layer layer-top"></span>
-                            <span class="layer layer-glow"></span>
-                        </div>
-                        <div class="layer-body">
-                            <h3>River Rhythm</h3>
-                            <p>Riverside lounging, gentle rafting, and sunset views at River Point, Dandeli.</p>
-                            <div class="layer-tags">
-                                <span>River views</span>
-                                <span>Rafting</span>
-                                <span>Sunset deck</span>
-                            </div>
-                        </div>
-                    </article>
+            <article class="career-card">
+              <h3>Activities Coordinator</h3>
+              <ul class="career-meta">
+                <li>Full-time</li>
+                <li>Guest Experience</li>
+                <li>Outdoor</li>
+              </ul>
+              <p>Schedule guest activities, support guides, manage timing and safety briefings, and improve experience flow for groups.</p>
+              <div class="career-actions">
+                <button class="career-apply" type="button" data-role="Activities Coordinator">Apply Now</button>
+                <span class="career-note">Weekend availability required</span>
+              </div>
+            </article>
 
-                    <article class="layer-card tone-heritage reveal" data-tilt>
-                        <div class="layer-stack">
-                            <span class="layer layer-base"></span>
-                            <span class="layer-photo" aria-hidden="true" style="--photo-url: url('https://dandelijungleedgeresort.com/wp-content/uploads/2025/12/1-42-scaled.jpg');"></span>
-                            <span class="layer layer-mid"></span>
-                            <span class="layer layer-top"></span>
-                            <span class="layer layer-glow"></span>
-                        </div>
-                        <div class="layer-body">
-                            <h3>Heritage Warmth</h3>
-                            <p>Traditional hospitality, handcrafted meals, and quiet courtyards at Tulsi Resort.</p>
-                            <div class="layer-tags">
-                                <span>Local cuisine</span>
-                                <span>Courtyard calm</span>
-                                <span>Slow evenings</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="layer-card tone-night reveal" data-tilt>
-                        <div class="layer-stack">
-                            <span class="layer layer-base"></span>
-                            <span class="layer-photo" aria-hidden="true" style="--photo-url: url('https://dandeliriverpoint.com/wp-content/uploads/elementor/thumbs/pool-scaled-rg4vwzecybw5g46axppou74wumd0uddxr3ax0gz73s.jpg');"></span>
-                            <span class="layer layer-mid"></span>
-                            <span class="layer layer-top"></span>
-                            <span class="layer layer-glow"></span>
-                        </div>
-                        <div class="layer-body">
-                            <h3>Night Sky Camp</h3>
-                            <p>Stargazing, bonfire conversations, and soft acoustic nights in the forest.</p>
-                            <div class="layer-tags">
-                                <span>Bonfire</span>
-                                <span>Stargazing</span>
-                                <span>Acoustic sets</span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="sustainability" class="section section-alt section-anchor">
-            <div class="container sustainability-layout">
-                <div class="sustainability-intro reveal">
-                    <p class="eyebrow">Sustainable By Design</p>
-                    <h2>Our Commitment to the Future.</h2>
-                    <p class="sustainability-copy">At Prithvi Resorts And Holiday Pvt Ltd, we believe in responsible tourism. Our goal is to provide sustainable and eco-friendly travel experiences that minimize our environmental impact while maximizing local benefits.</p>
-                    <div class="sustainability-pillars">
-                        <article class="pillar-card">
-                            <h3>Conservation First</h3>
-                            <p>Environmental stewardship and waste reduction across every stay.</p>
-                        </article>
-                        <article class="pillar-card">
-                            <h3>Community Powered</h3>
-                            <p>Supporting local artisans, guides, and community development.</p>
-                        </article>
-                        <article class="pillar-card">
-                            <h3>Shared Responsibility</h3>
-                            <p>Partnerships with NGOs and regional initiatives for lasting impact.</p>
-                        </article>
-                    </div>
-                </div>
-
-                <div class="sustainability-showcase reveal">
-                    <div class="showcase-photo" role="img" aria-label="Forest and river landscape in Dandeli"></div>
-                    <div class="showcase-content">
-                        <p class="showcase-eyebrow">Prithvi Green Loop</p>
-                        <h3>Local-first, low-impact experiences that protect the river and forests.</h3>
-                        <div class="showcase-chips">
-                            <span>Refill water stations</span>
-                            <span>Local artisan sourcing</span>
-                            <span>Forest clean-up drives</span>
-                            <span>Low-noise zones</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section section-anchor">
-            <div class="container contact-layout">
-                <div class="reveal">
-                    <h2>Get in Touch.</h2>
-                    <p>For inquiries about Prithvi Resorts or any of our subsidiary properties, please reach out below.</p>
-                    <ul class="contact-meta">
-                        <li>Email: <a href="mailto:info@prithviresorts.com">info@prithviresorts.com</a></li>
-                        <li>Phone: <a href="tel:+918945678901">+91-8945-678901</a></li>
-                        <li>Address: Prithvi Resorts Head Office, Dandeli, Karnataka 581325, India</li>
-                    </ul>
-                </div>
-
-                <form class="contact-form reveal" action="mailto:info@prithviresorts.com" method="post" enctype="text/plain" novalidate>
-                    <label for="name">Name</label>
-                    <input id="name" name="name" type="text" autocomplete="name" required>
-
-                    <label for="email">Email Address</label>
-                    <input id="email" name="email" type="email" autocomplete="email" required>
-
-                    <label for="phone">Phone Number</label>
-                    <input id="phone" name="phone" type="tel" autocomplete="tel" required>
-
-                    <label for="interest">Select Destination</label>
-                    <select id="interest" name="interest" required>
-                        <option value="">Select an option</option>
-                        <option value="general">General Inquiry</option>
-                        <option value="jungle-edge">Jungle Edge</option>
-                        <option value="river-point">River Point</option>
-                        <option value="tulsi">Tulsi Resort</option>
-                    </select>
-
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-
-                    <button type="submit" class="button-primary">Send Message</button>
-                </form>
-            </div>
-        </section>
+            <article class="career-card">
+              <h3>Driver / Transport Support</h3>
+              <ul class="career-meta">
+                <li>Full-time</li>
+                <li>Field role</li>
+                <li>Local routes</li>
+              </ul>
+              <p>Coordinate guest pickups and local transfers, maintain trip logs, and support smooth movement between stays and activities.</p>
+              <div class="career-actions">
+                <button class="career-apply" type="button" data-role="Driver / Transport Support">Apply Now</button>
+                <span class="career-note">Valid driving license required</span>
+              </div>
+            </article>
+          </div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="container footer-layout">
-            <div class="footer-brand">
-                <a href="#hero" class="footer-logo">Prithvi Resorts And Holiday Pvt Ltd</a>
-                <p class="footer-tagline">Thoughtful escapes across India&rsquo;s rivers, forests, and heritage landscapes.</p>
-                <div class="footer-badges">
-                    <span>Eco-led stays</span>
-                    <span>Local partners</span>
-                    <span>Wellness focus</span>
-                </div>
-            </div>
-            <div class="footer-column">
-                <p class="footer-heading">Explore</p>
-                <a href="#about">About Us</a>
-                <a href="#destinations">Destinations</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#services">Services</a>
-            </div>
-            <div class="footer-column">
-                <p class="footer-heading">Contact</p>
-                <a href="mailto:info@prithviresorts.com">info@prithviresorts.com</a>
-                <a href="tel:+918945678901">+91-8945-678901</a>
-                <p class="footer-address">Prithvi Resorts Head Office, Dandeli, Karnataka 581325, India</p>
-            </div>
-            <div class="footer-column">
-                <p class="footer-heading">Social</p>
-                <a href="#">LinkedIn</a>
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-            </div>
+    <footer id="contact" class="footer">
+      <div class="footer-top">
+        <div class="footer-brand">Holiday Updates</div>
+        <div class="footer-top-right">
+          <div class="footer-social" aria-label="Social links">
+            <a class="social-link linkedin" href="#" aria-label="LinkedIn">
+              <span class="social-mark">in</span>
+              <span class="social-label">LinkedIn</span>
+            </a>
+            <a class="social-link" href="#" aria-label="Instagram">
+              <span class="social-mark">ig</span>
+            </a>
+            <a class="social-link" href="#" aria-label="Facebook">
+              <span class="social-mark">f</span>
+            </a>
+            <a class="social-link" href="#" aria-label="YouTube">
+              <span class="social-mark">yt</span>
+            </a>
+          </div>
+          <button class="footer-cta" type="button">Subscribe for travel updates</button>
         </div>
-        <div class="container footer-bottom">
-            <p class="footer-copy">&copy; 2026 Prithvi Resorts And Holiday Pvt Ltd. All Rights Reserved.</p>
-            <div class="footer-legal">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-            </div>
+      </div>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Packages</h3>
+          <a href="#plans">Nature retreats</a>
+          <a href="#plans">Family vacations</a>
+          <a href="#plans">River stays</a>
         </div>
+        <div class="footer-col">
+          <h3>Insights</h3>
+          <a href="#discover">Blog</a>
+          <a href="#discover">Travel guide</a>
+          <a href="#discover">Top activities</a>
+        </div>
+        <div class="footer-col">
+          <h3>Help</h3>
+          <a href="#faq">Reservations</a>
+          <a href="#faq">Support</a>
+          <a href="#faq">Terms</a>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <p>+91 89456 78901</p>
+          <p>info@resortandholiday.com</p>
+          <a href="#career">Careers</a>
+          <a href="#plans">Book now &gt;</a>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <span>India. Local rates apply. Copyright 2026 Resorts and Holiday Pvt Ltd.</span>
+        <div class="footer-links">
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Service</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
     </footer>
+  </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
+  <div id="career-modal" class="career-modal" aria-hidden="true">
+    <div class="career-modal-backdrop" data-career-close></div>
+    <div class="career-modal-panel" role="dialog" aria-modal="true" aria-labelledby="career-modal-title">
+      <button class="career-modal-close" type="button" aria-label="Close application form" data-career-close>&times;</button>
+      <p class="eyebrow">Job Application</p>
+      <h3 id="career-modal-title" class="career-modal-title">
+        <span>Apply for</span>
+        <span class="career-modal-role">Resort Manager</span>
+      </h3>
+      <p class="career-modal-copy">Fill in your details and submit. This opens your email app with a prefilled job application draft.</p>
+
+      <form class="career-form" id="career-apply-form" action="mailto:careers@resortandholiday.com" method="post" enctype="text/plain">
+        <input id="career-role-input" name="Role" type="hidden" value="Resort Manager">
+
+        <div class="career-field">
+          <label for="career-name">Full Name</label>
+          <input id="career-name" name="Name" type="text" autocomplete="name" required>
+        </div>
+
+        <div class="career-field">
+          <label for="career-phone">Phone</label>
+          <input id="career-phone" name="Phone" type="tel" autocomplete="tel" required>
+        </div>
+
+        <div class="career-field">
+          <label for="career-email">Email</label>
+          <input id="career-email" name="Email" type="email" autocomplete="email" required>
+        </div>
+
+        <div class="career-field">
+          <label for="career-exp">Experience</label>
+          <select id="career-exp" name="Experience">
+            <option value="Fresher">Fresher</option>
+            <option value="0-1 year">0-1 year</option>
+            <option value="1-3 years">1-3 years</option>
+            <option value="3-5 years">3-5 years</option>
+            <option value="5+ years">5+ years</option>
+          </select>
+        </div>
+
+        <div class="career-field full">
+          <label for="career-resume-link">Resume Link (Google Drive / Dropbox)</label>
+          <input id="career-resume-link" name="Resume Link" type="url" placeholder="https://">
+        </div>
+
+        <div class="career-form-actions">
+          <button class="career-submit" type="submit">Send Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const siteHeader = document.querySelector('.site-header');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const primaryNav = document.querySelector('#primary-nav');
+
+      if (siteHeader && menuToggle && primaryNav) {
+        const closeMenu = () => {
+          siteHeader.classList.remove('nav-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          document.body.classList.remove('menu-open');
+        };
+
+        menuToggle.addEventListener('click', () => {
+          const isOpen = siteHeader.classList.toggle('nav-open');
+          menuToggle.setAttribute('aria-expanded', String(isOpen));
+          document.body.classList.toggle('menu-open', isOpen);
+        });
+
+        primaryNav.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            if (window.innerWidth <= 900) {
+              closeMenu();
+            }
+          });
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!siteHeader.classList.contains('nav-open')) {
+            return;
+          }
+
+          if (siteHeader.contains(event.target)) {
+            return;
+          }
+
+          closeMenu();
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') {
+            closeMenu();
+          }
+        });
+
+        window.addEventListener('resize', () => {
+          if (window.innerWidth > 900) {
+            closeMenu();
+          }
+        });
+      }
+
+      const setMediaBackground = (node, src) => {
+        if (!src) {
+          return;
+        }
+
+        const safe = src.replace(/"/g, '\\"');
+        node.style.setProperty('--bg-image', `url("${safe}")`);
+      };
+
+      const loadMedia = (src, onSuccess, onError) => {
+        const probe = new Image();
+        probe.addEventListener('load', onSuccess, { once: true });
+        probe.addEventListener('error', onError, { once: true });
+        probe.src = src;
+      };
+
+      const getPrimaryMedia = (block) => {
+        const desktopSource = block.dataset.imageDesktop;
+        const isDesktopViewport = window.matchMedia('(min-width: 901px)').matches;
+        if (desktopSource && isDesktopViewport) {
+          return desktopSource;
+        }
+
+        return block.dataset.image;
+      };
+
+      document.querySelectorAll('[data-image]').forEach((block) => {
+        const baseSource = block.dataset.image;
+        const primary = getPrimaryMedia(block);
+        const fallback = block.dataset.fallback || baseSource;
+
+        if (!primary) {
+          setMediaBackground(block, fallback);
+          return;
+        }
+
+        const onPrimaryError = () => {
+          if (baseSource && baseSource !== primary) {
+            loadMedia(
+              baseSource,
+              () => setMediaBackground(block, baseSource),
+              () => setMediaBackground(block, fallback)
+            );
+            return;
+          }
+
+          setMediaBackground(block, fallback);
+        };
+
+        loadMedia(
+          primary,
+          () => setMediaBackground(block, primary),
+          onPrimaryError
+        );
+      });
+
+      const revealNodes = document.querySelectorAll('.reveal');
+      if (revealNodes.length) {
+        revealNodes.forEach((node) => {
+          const rect = node.getBoundingClientRect();
+          const inInitialView = rect.top < window.innerHeight * 0.9;
+          if (inInitialView) {
+            node.classList.add('is-visible');
+          }
+        });
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        }, {
+          threshold: 0.18,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealNodes.forEach((node) => revealObserver.observe(node));
+      }
+
+      const statsSection = document.querySelector('.stats');
+      const metricNodes = document.querySelectorAll('.metric-value[data-count]');
+      let metricsAnimated = false;
+
+      const animateMetrics = () => {
+        if (metricsAnimated || !metricNodes.length) {
+          return;
+        }
+
+        metricsAnimated = true;
+
+        metricNodes.forEach((metric) => {
+          const target = Number(metric.dataset.count);
+          const suffix = metric.dataset.suffix || '';
+          metric.textContent = `${target}${suffix}`;
+        });
+      };
+
+      if (statsSection && metricNodes.length) {
+        const statsObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateMetrics();
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.4 });
+
+        statsObserver.observe(statsSection);
+      }
+
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach((item) => {
+        const button = item.querySelector('.faq-question');
+        if (!button) {
+          return;
+        }
+
+        button.addEventListener('click', () => {
+          const alreadyOpen = item.classList.contains('open');
+
+          faqItems.forEach((node) => {
+            node.classList.remove('open');
+            const trigger = node.querySelector('.faq-question');
+            if (trigger) {
+              trigger.setAttribute('aria-expanded', 'false');
+            }
+          });
+
+          if (!alreadyOpen) {
+            item.classList.add('open');
+            button.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+      const careerList = document.querySelector('.career-list');
+      if (careerList) {
+        const scrollAmount = () => Math.max(280, Math.round(careerList.clientWidth * 0.82));
+        document.querySelectorAll('[data-career-scroll]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const direction = button.dataset.careerScroll === 'prev' ? -1 : 1;
+            careerList.scrollBy({
+              left: direction * scrollAmount(),
+              behavior: prefersReducedMotion ? 'auto' : 'smooth'
+            });
+          });
+        });
+      }
+
+      const careerModal = document.querySelector('#career-modal');
+      const careerModalRole = document.querySelector('.career-modal-role');
+      const careerRoleInput = document.querySelector('#career-role-input');
+      const careerApplyForm = document.querySelector('#career-apply-form');
+      const careerNameInput = document.querySelector('#career-name');
+      let lastCareerTrigger = null;
+
+      const closeCareerModal = () => {
+        if (!careerModal || !careerModal.classList.contains('open')) {
+          return;
+        }
+
+        careerModal.classList.remove('open');
+        careerModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('career-modal-open');
+
+        if (lastCareerTrigger && typeof lastCareerTrigger.focus === 'function') {
+          lastCareerTrigger.focus();
+        }
+      };
+
+      const openCareerModal = (role, trigger) => {
+        if (!careerModal) {
+          return;
+        }
+
+        const safeRole = role || 'Job Opening';
+        lastCareerTrigger = trigger || null;
+
+        if (careerApplyForm) {
+          careerApplyForm.reset();
+        }
+
+        if (careerModalRole) {
+          careerModalRole.textContent = safeRole;
+        }
+
+        if (careerRoleInput) {
+          careerRoleInput.value = safeRole;
+        }
+
+        if (careerApplyForm) {
+          const subject = encodeURIComponent(`Application - ${safeRole}`);
+          careerApplyForm.action = `mailto:careers@resortandholiday.com?subject=${subject}`;
+        }
+
+        careerModal.classList.add('open');
+        careerModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('career-modal-open');
+
+        requestAnimationFrame(() => {
+          if (careerNameInput) {
+            careerNameInput.focus();
+          }
+        });
+      };
+
+      document.querySelectorAll('.career-apply[data-role]').forEach((button) => {
+        button.addEventListener('click', () => {
+          openCareerModal(button.dataset.role, button);
+        });
+      });
+
+      if (careerApplyForm) {
+        careerApplyForm.addEventListener('submit', () => {
+          setTimeout(closeCareerModal, 150);
+        });
+      }
+
+      if (careerModal) {
+        careerModal.querySelectorAll('[data-career-close]').forEach((button) => {
+          button.addEventListener('click', closeCareerModal);
+        });
+
+        careerModal.addEventListener('click', (event) => {
+          if (event.target === careerModal) {
+            closeCareerModal();
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') {
+            closeCareerModal();
+          }
+        });
+      }
+
+      const featureMedia = document.querySelector('.feature-media');
+      if (featureMedia) {
+        featureMedia.style.transform = 'none';
+      }
+    }());
+  </script>
 </body>
 </html>
